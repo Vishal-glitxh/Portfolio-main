@@ -1,0 +1,112 @@
+import { ProjectTimeline } from "../../../types";
+
+export const idpTimeline: ProjectTimeline = {
+  projectId: "idp",
+  overallProgress: 55,
+  estimatedCompletion: "Q4 2026",
+  currentPhase: "Backend Analytics Engine",
+  stages: [
+    {
+      id: "idp-research",
+      title: "Research",
+      description: "Evaluating SQLite referential schemas against NoSQL solutions.",
+      status: "completed",
+      startedAt: "2026-03-01",
+      completedAt: "2026-03-25",
+      notes: "Selected SQLite with Prisma ORM for relational referential integrity validations.",
+      deliverables: ["Tech Matrix Audit", "ORM Feasibility report"],
+      dependencies: ["None"],
+      lessonsLearned: ["ACID compliance is critical for multi-parent employee schema relations."],
+      priority: "High",
+      owner: "System Architect",
+      estimatedDuration: "4 weeks",
+      completionPercentage: 100
+    },
+    {
+      id: "idp-planning",
+      title: "Architecture Planning",
+      description: "Designing the skills matrix bento grid structure and relational models.",
+      status: "completed",
+      startedAt: "2026-03-26",
+      completedAt: "2026-04-15",
+      notes: "Mapped out assessment metrics and recommend courses linkages schema.",
+      deliverables: ["DB Architecture Diagram", "Prisma migration blueprints"],
+      dependencies: ["Research Phase"],
+      lessonsLearned: ["Index aggregates mapping accelerates developer score lookups."],
+      priority: "High",
+      owner: "Database Designer",
+      estimatedDuration: "3 weeks",
+      completionPercentage: 100
+    },
+    {
+      id: "idp-ui-design",
+      title: "UI Mockups",
+      description: "Designing interactive 9-box talent matrix canvases.",
+      status: "completed",
+      startedAt: "2026-04-16",
+      completedAt: "2026-05-05",
+      notes: "Drafted SVG vector layouts for the skills spider-web chart visualizers.",
+      deliverables: ["Figma Canvas design templates", "Branding guide rules"],
+      dependencies: ["Architecture Planning"],
+      lessonsLearned: ["Interactive tooltips require strict positioning bounds to prevent overflow clipping."],
+      priority: "Medium",
+      owner: "UI Designer",
+      estimatedDuration: "3 weeks",
+      completionPercentage: 100
+    },
+    {
+      id: "idp-backend-engine",
+      title: "Backend Analytics Engine",
+      description: "Integrating SQLite db query aggregates and optimization index files.",
+      status: "active",
+      startedAt: "2026-05-06",
+      notes: "Enforcing relational prisma checks and coding skills calculations loops.",
+      deliverables: ["SQL Analytics Controller", "Score Aggregator API"],
+      dependencies: ["Architecture Planning"],
+      lessonsLearned: ["Aggregating values on write paths speeds up analytics read calls."],
+      priority: "High",
+      owner: "Backend Developer",
+      estimatedDuration: "5 weeks",
+      completionPercentage: 20
+    },
+    {
+      id: "idp-frontend-matrix",
+      title: "Frontend Matrix Canvas",
+      description: "Building responsive SVG 9-box grids and spider charts components.",
+      status: "planned",
+      notes: "Planning D3 or raw SVG drawing components bindings in React.",
+      deliverables: ["9-Box grid canvas", "Interactive spider-web chart panel"],
+      dependencies: ["UI Mockups", "Backend Analytics Engine"],
+      priority: "High",
+      owner: "Frontend Engineer",
+      estimatedDuration: "4 weeks",
+      completionPercentage: 0
+    },
+    {
+      id: "idp-testing",
+      title: "Testing & Validation",
+      description: "Conducting E2E QA tests on employee matrices reports.",
+      status: "planned",
+      notes: "Targeting Jest tests coverage above 85%.",
+      deliverables: ["Testing coverage reports", "Axe Accessibility signoff"],
+      dependencies: ["Frontend Matrix Canvas"],
+      priority: "High",
+      owner: "QA Automation Specialists",
+      estimatedDuration: "3 weeks",
+      completionPercentage: 0
+    },
+    {
+      id: "idp-deployment",
+      title: "Deployment",
+      description: "Deploying dev pipeline runners and configuring staging monitors.",
+      status: "planned",
+      notes: "Preparing Cloud Build triggers.",
+      deliverables: ["Docker build config", "Rollback script instructions"],
+      dependencies: ["Testing & Validation"],
+      priority: "Medium",
+      owner: "Release Engineer",
+      estimatedDuration: "2 weeks",
+      completionPercentage: 0
+    }
+  ]
+};

@@ -1,0 +1,35 @@
+:root {
+  /* Colors */
+  --color-accent-solid: #c2a4ff;
+  --color-accent-glow: rgba(194, 164, 255, 0.4);
+  --color-accent-subtle: rgba(194, 164, 255, 0.05);
+  --color-accent-border: rgba(194, 164, 255, 0.2);
+  --color-bg-dark: #0a0a0f;
+  --color-bg-panel: rgba(255, 255, 255, 0.01);
+  --color-border-light: rgba(255, 255, 255, 0.05);
+  --color-border-subtle: rgba(255, 255, 255, 0.03);
+  
+  /* Text Colors */
+  --text-primary: #ffffff;
+  --text-secondary: #adacac;
+  --text-muted: #666666;
+  
+  /* Layout Metrics */
+  --radius-standard: 8px;
+  --radius-pill: 4px;
+  --radius-chat: 10px;
+  --glass-blur: blur(8px);
+  
+  /* Transitions */
+  --transition-standard: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 180ms ease-out;
+
+  /* Spacing & Layout Tokens */
+  --section-gap-lg: 32px;
+  --section-gap-md: 24px;
+  --section-gap-sm: 16px;
+  --chip-gap: 12px;
+  --card-padding: 35px;
+  --card-radius: 20px;
+}

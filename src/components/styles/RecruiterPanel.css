@@ -1,0 +1,340 @@
+.recruiter-overlay-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: var(--z-recruiter);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.recruiter-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0;
+}
+
+.recruiter-panel {
+  position: relative;
+  width: 450px;
+  max-width: 100vw;
+  height: 100%;
+  background: rgba(11, 8, 12, 0.85); /* Matches dark page background */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-left: 1px solid rgba(194, 164, 255, 0.15); /* Accent-tinted glass border */
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.recruiter-header {
+  padding: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.recruiter-subtitle {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--accentColor);
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.recruiter-header h3 {
+  font-family: "Syncopate", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.recruiter-close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #eae5ec;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.recruiter-close-btn:hover {
+  background: rgba(194, 164, 255, 0.15);
+  border-color: var(--accentColor);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(194, 164, 255, 0.3);
+}
+
+.recruiter-close-btn:focus-visible {
+  outline: 2px solid var(--accentColor);
+  outline-offset: 2px;
+}
+
+.recruiter-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+}
+
+/* Card Styling */
+.recruiter-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recruiter-card:hover {
+  border-color: rgba(194, 164, 255, 0.2);
+}
+
+.recruiter-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.section-icon {
+  font-size: 14px;
+}
+
+.text-accent { color: var(--accentColor); }
+.text-availability { color: #5ce6b0; }
+.text-why { color: #ffd15c; }
+.text-project { color: #5cb0e6; }
+.text-award { color: #e65c9c; }
+
+.recruiter-card h4 {
+  font-family: "Geist", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff;
+}
+
+.recruiter-card p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #adacac;
+}
+
+.recruiter-card p strong {
+  color: #ffffff;
+}
+
+.availability-highlight {
+  color: #5ce6b0 !important;
+  font-weight: 600;
+}
+
+/* Chips Grid */
+.recruiter-chips-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.recruiter-chip {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  background-color: rgba(194, 164, 255, 0.05);
+  border: 1px solid rgba(194, 164, 255, 0.15);
+  border-radius: 30px;
+  color: #eae5ec;
+  white-space: nowrap;
+}
+
+/* Skills list details */
+.recruiter-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.recruiter-skills-list p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Projects checklist links */
+.recruiter-projects-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recruiter-projects-list li a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-size: 13px;
+  color: #eae5ec;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.recruiter-projects-list li a:hover {
+  background-color: rgba(194, 164, 255, 0.08);
+  border-color: rgba(194, 164, 255, 0.25);
+  color: var(--accentColor);
+}
+
+.recruiter-projects-list li a:focus-visible {
+  outline: 2px solid var(--accentColor);
+}
+
+.project-link-icon {
+  font-size: 11px;
+  opacity: 0.6;
+}
+
+/* Certification list */
+.recruiter-cert-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recruiter-cert-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 2px solid var(--accentColor);
+  padding-left: 12px;
+}
+
+.recruiter-cert-list li strong {
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.recruiter-cert-list li span {
+  font-size: 11px;
+  color: #adacac;
+}
+
+/* Action panel buttons */
+.recruiter-actions-card h4 {
+  margin-bottom: 16px;
+}
+
+.recruiter-actions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recruiter-btn {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.recruiter-btn-primary {
+  background: var(--accentColor);
+  color: #0b080c;
+}
+
+.recruiter-btn-primary:hover {
+  background: #ffffff;
+  color: #0b080c;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.recruiter-btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #eae5ec;
+}
+
+.recruiter-btn-secondary:hover {
+  background: rgba(194, 164, 255, 0.15);
+  border-color: var(--accentColor);
+  color: #ffffff;
+}
+
+.recruiter-btn-disabled {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  color: #555555;
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  font-size: 13px;
+}
+
+.recruiter-btn:focus-visible {
+  outline: 2px solid var(--accentColor);
+  outline-offset: 2px;
+}
+
+/* Mobile responsive */
+@media only screen and (max-width: 768px) {
+  .recruiter-panel {
+    width: 100vw;
+    border-left: none;
+  }
+  .recruiter-header {
+    padding: 20px;
+  }
+  .recruiter-body {
+    padding: 20px;
+  }
+}

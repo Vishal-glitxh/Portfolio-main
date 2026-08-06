@@ -1,0 +1,8 @@
+@import "./tokens.css";
+@import "./animations.css";
+
+/* Core Theme definitions */
+body {
+  background-color: var(--color-bg-dark);
+  color: var(--text-primary);
+}
