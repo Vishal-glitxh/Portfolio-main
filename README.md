@@ -6,7 +6,7 @@ Welcome to my personal developer portfolio repository! This project highlights m
 
 ## 🔗 Live Links
 
-*   **Live Demo**: [vishalsuhas.com](https://vishalsuhas.com)
+*   **Live Demo**: [vishalsuhas.com](https://vishalsuhas-dev.vercel.app/)
 *   **LinkedIn**: [linkedin.com/in/vishalsuhas](https://www.linkedin.com/in/vishalsuhas)
 *   **GitHub**: [github.com/Vishal-glitxh](https://github.com/Vishal-glitxh)
 *   **Email**: [vishalsuhas0662@gmail.com](mailto:vishalsuhas0662@gmail.com)
