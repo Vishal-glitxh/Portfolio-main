@@ -6,6 +6,7 @@ import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { trackRecruiterModeOpened } from "./utils/analytics";
 import "./styles/Navbar.css";
 
+import { useLightweightLayout } from "../hooks/useLightweightLayout";
 import { setSmoother } from "./utils/smoother";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
@@ -16,45 +17,38 @@ interface NavbarProps {
 }
 
 const Navbar = ({ isRecruiterOpen, onToggleRecruiter }: NavbarProps) => {
+  const lightweight = useLightweightLayout();
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
+  const wasRecruiterOpen = useRef(false);
   useEffect(() => {
-    if (!isRecruiterOpen && toggleButtonRef.current) {
+    if (wasRecruiterOpen.current && !isRecruiterOpen && toggleButtonRef.current) {
       toggleButtonRef.current.focus();
     }
+    wasRecruiterOpen.current = isRecruiterOpen;
   }, [isRecruiterOpen]);
 
   useEffect(() => {
-    const smootherInstance = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
-      autoResize: true,
-      ignoreMobileResize: true,
+    if (lightweight) return;
+    const instance = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper", content: "#smooth-content", smooth: 1.7,
+      effects: true, autoResize: true, ignoreMobileResize: true,
     });
-    setSmoother(smootherInstance);
-
-    smootherInstance.scrollTop(0);
-    smootherInstance.paused(true);
-
-    const links = document.querySelectorAll(".header ul a");
-    links.forEach((elem) => {
-      const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
-          e.preventDefault();
-          const elem = e.currentTarget as HTMLAnchorElement;
-          const section = elem.getAttribute("data-href");
-          smootherInstance.scrollTo(section, true, "top top");
-        }
-      });
-    });
-    window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
-    });
-  }, []);
+    setSmoother(instance);
+    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".header ul a"));
+    const navigate = (event: Event) => {
+      const section = (event.currentTarget as HTMLAnchorElement).getAttribute("data-href");
+      if (!section) return;
+      event.preventDefault();
+      instance.scrollTo(section, true, "top top");
+    };
+    links.forEach(link => link.addEventListener("click", navigate));
+    return () => {
+      links.forEach(link => link.removeEventListener("click", navigate));
+      instance.kill();
+      setSmoother(undefined);
+    };
+  }, [lightweight]);
   return (
     <>
       <div className="header" id="nav">

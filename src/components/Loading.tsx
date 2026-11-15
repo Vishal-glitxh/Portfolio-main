@@ -2,35 +2,31 @@ import { useEffect, useState } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
-import Marquee from "react-fast-marquee";
-
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
   const [loaded, setLoaded] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const clicked = isLoaded;
 
-  if (percent >= 100) {
-    setTimeout(() => {
-      setLoaded(true);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
-    }, 600);
-  }
+  const complete = percent >= 100;
+  useEffect(() => {
+    if (!complete) return;
+    const ready = setTimeout(() => setLoaded(true), 600);
+    const finish = setTimeout(() => setIsLoaded(true), 1600);
+    return () => { clearTimeout(ready); clearTimeout(finish); };
+  }, [complete]);
 
   useEffect(() => {
-    import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
-        setClicked(true);
-        setTimeout(() => {
-          if (module.initialFX) {
-            module.initialFX();
-          }
-          setIsLoading(false);
-        }, 900);
-      }
-    });
+    if (!isLoaded) return;
+    const timer = setTimeout(() => {
+      import("./utils/initialFX").then(module => module.initialFX())
+        .catch(error => {
+          console.warn("Intro animation unavailable", error);
+          document.body.style.overflowY = "auto";
+          document.querySelector("main")?.classList.add("main-active");
+        }).finally(() => setIsLoading(false));
+    }, 900);
+    return () => clearTimeout(timer);
   }, [isLoaded, setIsLoading]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
@@ -61,10 +57,10 @@ const Loading = ({ percent }: { percent: number }) => {
       </div>
       <div className="loading-screen">
         <div className="loading-marquee">
-          <Marquee>
+          <div className="loading-marquee-track">
             <span> A Creative Developer</span> <span>A Creative Designer</span>
             <span> A Creative Developer</span> <span>A Creative Designer</span>
-          </Marquee>
+          </div>
         </div>
         <div
           className={`loading-wrap ${clicked && "loading-clicked"}`}

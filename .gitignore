@@ -34,3 +34,7 @@ npm-cache-temp/
 coverage/
 *.tsbuildinfo
 
+
+playwright-report/
+test-results/
+.vercel/

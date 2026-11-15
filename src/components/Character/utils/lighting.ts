@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { RGBELoader } from "three-stdlib";
+import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 import { gsap } from "gsap";
 
 const setLighting = (scene: THREE.Scene) => {
@@ -18,9 +18,13 @@ const setLighting = (scene: THREE.Scene) => {
   pointLight.castShadow = true;
   scene.add(pointLight);
 
+  let disposed = false;
+  let environment: THREE.Texture | undefined;
   new RGBELoader()
     .setPath("/models/")
     .load("char_enviorment.hdr", function (texture) {
+      if (disposed) { texture.dispose(); return; }
+      environment = texture;
       texture.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = texture;
       scene.environmentIntensity = 0;
@@ -57,7 +61,14 @@ const setLighting = (scene: THREE.Scene) => {
     });
   }
 
-  return { setPointLight, turnOnLights };
+  return { setPointLight, turnOnLights, dispose: () => {
+    disposed = true;
+    gsap.killTweensOf([scene, directionalLight, ".character-rim"]);
+    environment?.dispose();
+    scene.environment = null;
+    directionalLight.dispose();
+    pointLight.dispose();
+  } };
 };
 
 export default setLighting;

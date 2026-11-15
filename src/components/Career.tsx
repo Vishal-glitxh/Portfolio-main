@@ -1,69 +1,63 @@
+import { FiAward, FiBookOpen, FiCpu, FiShield } from "react-icons/fi";
 import "./styles/Career.css";
 
-const Career = () => {
-  return (
-    <div className="career-section section-container">
-      <div className="career-container">
-        <h2>
-          Education <span>&</span>
-          <br /> Credentials
-        </h2>
-        <div className="career-info">
-          <div className="career-timeline">
-            <div className="career-dot"></div>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>B.E. (AI & ML)</h4>
-                <h5>Visvesvaraya Technological University (VTU)</h5>
-              </div>
-              <h3>2028</h3>
-            </div>
-            <p>
-              Bachelor of Engineering in Artificial Intelligence & Machine Learning. Focus areas: Machine Learning, Deep Learning, Neural Networks, Natural Language Processing, Computer Vision, and AI Ethics.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>IBM Cybersecurity Fundamentals</h4>
-                <h5>IBM Professional Certification</h5>
-              </div>
-              <h3>CERT</h3>
-            </div>
-            <p>
-              Verified Credential (ID: abdd04e5-8a87-4546-bce2-9eec5b30b57a). Mastered fundamental cybersecurity principles, including threat mitigation, data privacy, and systems security management.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>IBM AI Fundamentals</h4>
-                <h5>IBM Professional Certification</h5>
-              </div>
-              <h3>CERT</h3>
-            </div>
-            <p>
-              Verified Credential (ID: 659c71c4-80bc-409f-b2e4-ca41b93e9657). Built a strong foundation in AI, Machine Learning, Deep Learning, NLP, Computer Vision, AI Ethics, Chatbots, and Watson Studio.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>Continuous AI & ML Learning</h4>
-                <h5>Self-Driven Expertise</h5>
-              </div>
-              <h3>ongoing</h3>
-            </div>
-            <p>
-              Consistently researching deep learning papers, experimenting with neural architectures, maintaining active GitHub contributions, and keeping up with ethical AI guidelines.
-            </p>
-          </div>
+const credentials = [
+  {
+    title: "IBM Cybersecurity Fundamentals",
+    icon: FiShield,
+    summary: "Threat mitigation, data privacy, and systems security management.",
+    id: "abdd04e5-8a87-4546-bce2-9eec5b30b57a",
+  },
+  {
+    title: "IBM AI Fundamentals",
+    icon: FiCpu,
+    summary: "Machine learning, deep learning, language and vision models, AI ethics, chatbots, and Watson Studio.",
+    id: "659c71c4-80bc-409f-b2e4-ca41b93e9657",
+  },
+];
+
+const Career = () => (
+  <section className="education-section" id="education" aria-labelledby="education-heading">
+    <h2 id="education-heading">Education <span>&amp;</span> Credentials</h2>
+    <div className="education-layout">
+      <article className="education-degree">
+        <div className="education-year">
+          <FiBookOpen aria-hidden="true" />
+          <span>Expected graduation<strong>2028</strong></span>
         </div>
-      </div>
+        <div className="education-degree-copy">
+          <p className="education-label">Bachelor of Engineering</p>
+          <h3>Artificial Intelligence &amp; Machine Learning</h3>
+          <p>Visvesvaraya Technological University (VTU)</p>
+        </div>
+        <div className="education-focus">
+          <h4>Focus areas</h4>
+          <ul>{["Machine learning", "Deep learning", "Neural networks", "Natural language processing", "Computer vision", "AI ethics"].map(topic => <li key={topic}>{topic}</li>)}</ul>
+        </div>
+      </article>
+      <ol className="education-milestones" aria-label="Credentials and ongoing learning">
+        {credentials.map(({ title, icon: Icon, summary, id }) => (
+          <li key={id}>
+            <span className="education-marker"><Icon aria-hidden="true" /></span>
+            <div>
+              <p className="education-label">IBM Professional Certification</p>
+              <h3>{title}</h3>
+              <p>{summary}</p>
+              <details><summary>Credential ID</summary><code>{id}</code></details>
+            </div>
+          </li>
+        ))}
+        <li>
+          <span className="education-marker"><FiAward aria-hidden="true" /></span>
+          <div>
+            <p className="education-label">Ongoing · Independent study</p>
+            <h3>Continuous AI &amp; ML learning</h3>
+            <p>Reading deep learning papers, experimenting with neural architectures, contributing on GitHub, and following developments in AI ethics.</p>
+          </div>
+        </li>
+      </ol>
     </div>
-  );
-};
+  </section>
+);
 
 export default Career;

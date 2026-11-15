@@ -361,3 +361,8 @@
     font-size: 18px;
   }
 }
+
+.loading-marquee-track { display: flex; width: max-content; animation: loading-marquee 16s linear infinite; }
+.loading-marquee-track span { white-space: nowrap; }
+@keyframes loading-marquee { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .loading-marquee-track { animation: none; } }

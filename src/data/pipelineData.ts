@@ -182,61 +182,37 @@ export const pipelineData: Record<string, DeploymentPipeline> = {
   portfolio: {
     projectId: "portfolio",
     provider: "GitHub Actions",
-    maturityLevel: "Production",
-    recentRuns: [
-      {
-        runNumber: 62,
-        commitHash: "c5d6e7f",
-        commitMessage: "release: tag build 3.3 workspace navigation system stable state",
-        branch: "master",
-        trigger: "push",
-        status: "success",
-        startedAt: "2026-08-06T03:34:00Z",
-        durationSeconds: 128,
-        steps: [
-          { id: "commit", name: "Developer Commit", status: "success", durationSeconds: 0, logs: ["Commit: c5d6e7f8182903ab", "Author: vishalsuhas", "Branch: master"] },
-          { id: "source", name: "Source Control", status: "success", durationSeconds: 2, logs: ["git fetch origin master", "Updating local workspace index..."] },
-          { id: "deps", name: "Dependency Installation", status: "success", durationSeconds: 25, logs: ["npm ci", "All node modules initialized cleanly."] },
-          { id: "lint", name: "Lint", status: "success", durationSeconds: 10, logs: ["npm run lint", "Lint checked successfully. 0 warnings."] },
-          { id: "types", name: "Type Check", status: "success", durationSeconds: 15, logs: ["tsc --noEmit", "Types successfully checked."] },
-          { id: "tests", name: "Unit Tests", status: "success", durationSeconds: 12, logs: ["npm run test:ci", "No static unit checks configured for hosting layout. Skipping tests."] },
-          { id: "build", name: "Build", status: "success", durationSeconds: 38, logs: ["vite build", "Built static distribution bundle in dist/ successfully."] },
-          { id: "artifact", name: "Artifact", status: "success", durationSeconds: 8, logs: ["Generated static html bundles.", "Artifact size: 1.14MB"] },
-          { id: "deploy", name: "Deployment", status: "success", durationSeconds: 12, logs: ["firebase deploy --only hosting", "Deploying website assets to Firebase Hosting..."] },
-          { id: "verify", name: "Health Verification", status: "success", durationSeconds: 6, logs: ["curl -s https://vishal.dev/", "HTTP/2 200 OK", "Content matched HTML bundle successfully."] }
-        ]
-      }
-    ],
+    maturityLevel: "Planned Deployment",
+    recentRuns: [],
     staging: {
-      name: "Staging Preview (Firebase Hosting)",
-      deploymentStage: "Production",
-      status: "active",
-      hostingProvider: "Firebase Hosting",
+      name: "Staging Preview (Vercel)",
+      deploymentStage: "Planned Deployment",
+      status: "planned",
+      hostingProvider: "Vercel",
       deploymentStrategy: "Pull Request Previews",
-      healthStatus: "healthy",
-      version: "PR-62-preview",
-      lastDeployed: "2026-08-06T03:30:00Z",
-      rollbackAvailability: "available",
-      url: "https://staging.vishalsuhas.com"
+      healthStatus: "planned",
+      version: "Not deployed",
+      lastDeployed: "Not verified",
+      rollbackAvailability: "unavailable",
     },
     production: {
-      name: "Production Release (Firebase Hosting)",
+      name: "Production Release (Vercel)",
       deploymentStage: "Production",
       status: "active",
-      hostingProvider: "Firebase Hosting",
+      hostingProvider: "Vercel",
       deploymentStrategy: "Direct Rollout (Instant caching updates)",
-      healthStatus: "healthy",
-      version: "v2.0.0",
-      lastDeployed: "2026-08-06T03:36:00Z",
-      rollbackAvailability: "available",
-      url: "https://vishalsuhas.com"
+      healthStatus: "planned",
+      version: "Not verified",
+      lastDeployed: "Not verified",
+      rollbackAvailability: "unavailable",
+      url: "https://vishalsuhas-dev.vercel.app"
     },
     rollbackStrategy: {
-      strategyType: "Firebase Hosting Version Rollback",
-      recoveryProcedure: "Use Firebase Console or CLI to select previous release artifact ID and redeploy instantly: `firebase hosting:clone vishalsuhas-prod:104 vishalsuhas-prod:live`.",
-      previousStableVersion: "v1.9.8",
-      backupPolicy: "Git tag backups on master commits, Firebase Hosting stores previous 10 deployed artifact packages automatically.",
-      estimatedRecoveryTime: "Less than 5 seconds"
+      strategyType: "Vercel Version Rollback",
+      recoveryProcedure: "Select a verified previous deployment in the Vercel dashboard after confirming project access.",
+      previousStableVersion: "Not verified",
+      backupPolicy: "Configure release retention in the hosting project.",
+      estimatedRecoveryTime: "Not verified"
     }
   }
 };

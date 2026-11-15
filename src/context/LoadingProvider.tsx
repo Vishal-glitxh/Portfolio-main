@@ -2,9 +2,9 @@ import {
   createContext,
   PropsWithChildren,
   useContext,
-  useEffect,
   useState,
 } from "react";
+import { isLightweightLayout } from "../hooks/useLightweightLayout";
 import Loading from "../components/Loading";
 
 interface LoadingType {
@@ -13,10 +13,10 @@ interface LoadingType {
   setLoading: (percent: number) => void;
 }
 
-export const LoadingContext = createContext<LoadingType | null>(null);
+const LoadingContext = createContext<LoadingType | null>(null);
 
 export const LoadingProvider = ({ children }: PropsWithChildren) => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => !isLightweightLayout());
   const [loading, setLoading] = useState(0);
 
   const value = {
@@ -24,7 +24,6 @@ export const LoadingProvider = ({ children }: PropsWithChildren) => {
     setIsLoading,
     setLoading,
   };
-  useEffect(() => {}, [loading]);
 
   return (
     <LoadingContext.Provider value={value as LoadingType}>

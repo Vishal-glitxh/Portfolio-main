@@ -36,6 +36,7 @@ export const OperationsWorkspace = React.memo(({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+      <p role="note">Illustrative engineering records. These metrics, logs, and environments are not connected to live monitoring.</p>
       {/* 1. Performance & Security Review */}
       {perfReview && (
         <AccordionItem
@@ -119,7 +120,7 @@ export const OperationsWorkspace = React.memo(({
         >
           <div className="pipeline-container" style={{ display: "flex", flexDirection: "column", gap: "25px" }}>
             {/* Pipeline Run Overview */}
-            <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "15px", background: "rgba(255,255,255,0.01)", border: "1px solid rgba(255,255,255,0.03)", borderRadius: "8px", padding: "15px" }}>
+            {pipeline.recentRuns.length > 0 ? <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "center", gap: "15px", background: "rgba(255,255,255,0.01)", border: "1px solid rgba(255,255,255,0.03)", borderRadius: "8px", padding: "15px" }}>
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "4px" }}>
                   <span style={{ fontSize: "14px", fontWeight: 800, color: "#ffffff" }}>
@@ -149,6 +150,8 @@ export const OperationsWorkspace = React.memo(({
                 </div>
               </div>
             </div>
+
+            : <p>No verified workflow runs available. Check the repository Actions page for current results.</p>}
 
             {/* Pipeline Stage Tracker */}
             <PipelineVisualizer pipeline={pipeline} />

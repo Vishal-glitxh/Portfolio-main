@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { GLTF } from "three-stdlib";
+import { GLTF } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { eyebrowBoneNames, typingBoneNames } from "../../../data/boneData";
 
 const setAnimations = (gltf: GLTF) => {
@@ -24,14 +24,14 @@ const setAnimations = (gltf: GLTF) => {
         console.error(`Animation "${name}" not found`);
       }
     });
-    let typingAction: THREE.AnimationAction | null = null;
-    typingAction = createBoneAction(gltf, mixer, "typing", typingBoneNames);
+    const typingAction = createBoneAction(gltf, mixer, "typing", typingBoneNames);
     if (typingAction) {
       typingAction.enabled = true;
       typingAction.play();
       typingAction.timeScale = 1.2;
     }
   }
+  let blinkTimer: ReturnType<typeof setTimeout> | undefined;
   function startIntro() {
     const introClip = gltf.animations.find(
       (clip) => clip.name === "introAnimation"
@@ -39,7 +39,7 @@ const setAnimations = (gltf: GLTF) => {
     const introAction = mixer.clipAction(introClip!);
     introAction.clampWhenFinished = true;
     introAction.reset().play();
-    setTimeout(() => {
+    blinkTimer = setTimeout(() => {
       const blink = gltf.animations.find((clip) => clip.name === "Blink");
       mixer.clipAction(blink!).play().fadeIn(0.5);
     }, 2500);
@@ -80,7 +80,11 @@ const setAnimations = (gltf: GLTF) => {
       hoverDiv.removeEventListener("mouseleave", onLeaveFace);
     };
   }
-  return { mixer, startIntro, hover };
+  return { mixer, startIntro, hover, dispose: () => {
+    clearTimeout(blinkTimer);
+    mixer.stopAllAction();
+    mixer.uncacheRoot(character);
+  } };
 };
 
 const createBoneAction = (

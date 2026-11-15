@@ -238,12 +238,12 @@ export const engineeringEvidenceData: Record<string, EngineeringEvidence> = {
   },
   "Personal Portfolio": {
     id: "personalportfolio",
-    recruiterSummary: "An interactive portfolio utilizing React Three Fiber WebGL layers and GSAP ScrollSmoother animations code-split inside React Portals.",
+    recruiterSummary: "A React portfolio with a Three.js avatar, desktop scroll animations, and project panels loaded on demand.",
     engineeringDecisions: [
       {
         decision: "React Portal lazy-loading for Panels",
-        context: "Rending large recruiter-focused panels and project visualizers above WebGL layers.",
-        reason: "Mounting overlays in React Portals keeps the DOM tree clean and separates overlay clicks from Three.js scene triggers.",
+        context: "Rendering recruiter-focused panels and project visualizers above WebGL layers.",
+        reason: "Portals mount overlays outside the scrolling container. Lazy imports defer panel code until a visitor opens it.",
         alternatives: "Conditionally rendered inline divs, Multi-page static sites.",
         tradeoffs: "Adds lazy-load boundary checks, but maintains a minimal initial page size for instant loading.",
         outcome: "Initial page bundle remains under 1MB, ensuring fast load times on mobile viewports."
@@ -283,7 +283,7 @@ export const engineeringEvidenceData: Record<string, EngineeringEvidence> = {
     ],
     deployment: [
       { name: "Edge Router", technology: "CDN edge servers", category: "Cloud", status: "Active" },
-      { name: "Page Client", technology: "React SPA / R3F", category: "Frontend", status: "Active" },
+      { name: "Page Client", technology: "React / Three.js", category: "Frontend", status: "Active" },
       { name: "3D mesh Core", technology: "GLTF Bone Controllers", category: "Client", status: "Active" }
     ],
     timeline: [

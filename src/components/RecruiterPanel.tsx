@@ -5,7 +5,7 @@ import {
   FaGithub, FaLinkedin, FaEnvelope, FaTimes, 
   FaAward, FaCode, FaBriefcase, FaLightbulb, FaExternalLinkAlt 
 } from "react-icons/fa";
-import { trackResumeDownloaded, trackRecruiterModeOpened, trackRecruiterModeClosed } from "./utils/analytics";
+import { trackRecruiterModeOpened, trackRecruiterModeClosed } from "./utils/analytics";
 import { useScrollLock } from "./utils/useScrollLock";
 import "./styles/RecruiterPanel.css";
 
@@ -253,25 +253,9 @@ const RecruiterPanel = ({ isOpen, onClose }: RecruiterPanelProps) => {
             <h4>Quick Actions</h4>
             <div className="recruiter-actions-grid">
               
-              {/* Resume Download (Coming Soon) */}
-              <button 
-                disabled 
-                onClick={trackResumeDownloaded}
-                className="recruiter-btn recruiter-btn-disabled"
-                title="Resume is under construction"
-              >
-                Download CV (Coming Soon)
-              </button>
-
-              {/* Resume Preview (Coming Soon) */}
-              <button 
-                disabled 
-                onClick={trackResumeDownloaded}
-                className="recruiter-btn recruiter-btn-disabled"
-                title="Resume is under construction"
-              >
-                Preview CV (Coming Soon)
-              </button>
+              <a href="mailto:vishalsuhas0662@gmail.com?subject=Resume%20request" className="recruiter-btn">
+                Request resume
+              </a>
 
               <a 
                 href="mailto:vishalsuhas0662@gmail.com" 

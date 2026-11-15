@@ -9,15 +9,19 @@ import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import TechStack from "./TechStack";
-import setSplitText from "./utils/splitText";
+import setSplitText, { resetSplitText } from "./utils/splitText";
+import { useLightweightLayout } from "../hooks/useLightweightLayout";
+import { useLoading } from "../context/LoadingProvider";
+import "../styles/mobile.css";
 
 const RecruiterPanel = lazy(() => import("./RecruiterPanel"));
 const ProjectExplorer = lazy(() => import("./ProjectExplorer"));
 
 const MainContainer = ({ children }: PropsWithChildren) => {
-  const [isDesktopView, setIsDesktopView] = useState<boolean>(
-    window.innerWidth > 1024
-  );
+  const lightweight = useLightweightLayout();
+  const isDesktopView = !lightweight;
+  const [showCharacter, setShowCharacter] = useState(false);
+  const { setIsLoading } = useLoading();
   const [isRecruiterOpen, setIsRecruiterOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const lastActiveElementRef = useRef<HTMLElement | null>(null);
@@ -38,31 +42,42 @@ const MainContainer = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     const resizeHandler = () => {
-      setSplitText();
-      setIsDesktopView(window.innerWidth > 1024);
+      if (isDesktopView) setSplitText();
     };
+    if (lightweight) {
+      resetSplitText();
+      setIsLoading(false);
+      document.body.style.overflowY = "auto";
+    }
     resizeHandler();
     window.addEventListener("resize", resizeHandler);
     return () => {
       window.removeEventListener("resize", resizeHandler);
     };
-  }, [isDesktopView]);
+  }, [isDesktopView, lightweight, setIsLoading]);
 
   return (
-    <div className="container-main">
-      <Cursor />
+    <div className={`container-main ${lightweight ? "mobile-layout" : ""}`}>
+      {isDesktopView && <Cursor />}
       <Navbar isRecruiterOpen={isRecruiterOpen} onToggleRecruiter={() => setIsRecruiterOpen(true)} />
       <SocialIcons />
       {isDesktopView && children}
       <div id="smooth-wrapper">
         <div id="smooth-content">
           <div className="container-main">
-            <Landing>{!isDesktopView && children}</Landing>
+            <Landing>{lightweight && <div className="mobile-character-stage">
+              {showCharacter ? <>
+                {children}
+                <button className="character-toggle" onClick={() => setShowCharacter(false)}>Close 3D character</button>
+              </> : <button className="character-toggle" onClick={() => setShowCharacter(true)}>
+                View 3D character <span>Optional interactive preview</span>
+              </button>}
+            </div>}</Landing>
             <About />
             <WhatIDo />
             <Career />
             <Work onProjectClick={handleOpenProject} />
-            {isDesktopView && <TechStack />}
+            <TechStack />
             <Contact />
           </div>
         </div>

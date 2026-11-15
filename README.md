@@ -6,7 +6,7 @@ Welcome to my personal developer portfolio repository! This project highlights m
 
 ## 🔗 Live Links
 
-*   **Live Demo**: [vishalsuhas.com](https://vishalsuhas.com)
+*   **Live Demo**: [vishalsuhas-dev.vercel.app](https://vishalsuhas-dev.vercel.app)
 *   **LinkedIn**: [linkedin.com/in/vishalsuhas](https://www.linkedin.com/in/vishalsuhas)
 *   **GitHub**: [github.com/Vishal-glitxh](https://github.com/Vishal-glitxh)
 *   **Email**: [vishalsuhas0662@gmail.com](mailto:vishalsuhas0662@gmail.com)
@@ -73,7 +73,7 @@ Both the **Recruiter Mode Panel** and the **Project Explorer** implement compreh
 To run this project locally, follow these instructions.
 
 ### Prerequisites
-*   Node.js (version 18 or above recommended)
+*   Node.js 24 (see `.nvmrc`)
 *   npm (or yarn / pnpm)
 
 ### Installation
@@ -84,7 +84,7 @@ To run this project locally, follow these instructions.
    ```
 2. Install dependencies:
    ```bash
-   npm install
+   npm ci
    ```
 
 ### Running Locally
@@ -118,3 +118,7 @@ Copyright © 2026.
 # Portfolio-Main
 # Portfolio-Main
 # Portfolio-Main
+
+## Verification and deployment
+
+See [Deployment.md](docs/Deployment.md) for automated checks, browser tests, Vercel configuration, and the required hosting account setup. Pipeline and monitoring examples in the explorer are illustrative, not live service status.

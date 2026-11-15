@@ -1,3 +1,4 @@
+import { isLightweightLayout } from "../../hooks/useLightweightLayout";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -14,7 +15,7 @@ let isListenerAdded = false;
 
 export default function setSplitText() {
   ScrollTrigger.config({ ignoreMobileResize: true });
-  if (window.innerWidth < 900) return;
+  if (isLightweightLayout()) return;
   const paras: NodeListOf<ParaElement> = document.querySelectorAll(".para");
   const titles: NodeListOf<ParaElement> = document.querySelectorAll(".title");
 
@@ -82,4 +83,15 @@ export default function setSplitText() {
     ScrollTrigger.addEventListener("refresh", () => setSplitText());
     isListenerAdded = true;
   }
+}
+
+
+export function resetSplitText() {
+  document.querySelectorAll<ParaElement>(".para, .title").forEach(element => {
+    element.anim?.scrollTrigger?.kill();
+    element.anim?.kill();
+    element.split?.revert();
+    delete element.anim;
+    delete element.split;
+  });
 }

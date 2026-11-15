@@ -117,7 +117,7 @@ export const architectureDiagrams: Record<string, ProjectArchData> = {
       nodes: [
         { label: "React Prep Frontend", desc: "User prep dashboard rendering course uploads, match heatmaps, and practice cards.", x: 60, y: 50 },
         { label: "Express API Backend", desc: "Handles document uploads, queries, and user state storage.", x: 220, y: 50 },
-        { label: "Sentence-Transformers", desc: "High-dimensional NLP embedder creating 768-dim semantic vectors.", x: 380, y: 50 },
+        { label: "Sentence-Transformers", desc: "High-dimensional NLP embedder creating semantic vectors.", x: 380, y: 50 },
         { label: "MongoDB Collections", desc: "NoSQL DB collections containing vectors, courses, and generated prep topics.", x: 540, y: 50 }
       ],
       connections: [
@@ -129,7 +129,7 @@ export const architectureDiagrams: Record<string, ProjectArchData> = {
     pipeline: {
       nodes: [
         { label: "Raw Document Stream", desc: "Ingests unstructured document files from client react uploaders.", x: 60, y: 50 },
-        { label: "Vector Embeddings", desc: "Converts text chunks into 768-dimensional float arrays.", x: 220, y: 50 },
+        { label: "Vector Embeddings", desc: "Converts text chunks into semantic vectors.", x: 220, y: 50 },
         { label: "Similarity Scoring", desc: "Computes similarity dot products against reference curriculum nodes.", x: 380, y: 50 },
         { label: "Prep Cards Output", desc: "Generates sample exam questions mapped to high-overlap categories.", x: 540, y: 50 }
       ],
@@ -185,9 +185,9 @@ export const architectureDiagrams: Record<string, ProjectArchData> = {
     flow: {
       nodes: [
         { label: "Viewport Interactions", desc: "Tracks mouse movement vector and window scroll offset coordinates.", x: 60, y: 50 },
-        { label: "GSAP Lerp Timelines", desc: "Interpolates updates smoothly to prevent sudden layout jumps.", x: 220, y: 50 },
+        { label: "Pointer Target", desc: "Maps pointer movement to a rotation target.", x: 220, y: 50 },
         { label: "Skeleton Rotations", desc: "Calculates bone quaternion offsets to direct character mesh.", x: 380, y: 50 },
-        { label: "R3F WebGL Frame", desc: "Triggers React Three Fiber WebGL updates to paint the avatar frame.", x: 540, y: 50 }
+        { label: "Three.js Renderer", desc: "Draws the animated character with Three.js WebGLRenderer.", x: 540, y: 50 }
       ],
       connections: [
         { from: 0, to: 1 },
@@ -199,7 +199,7 @@ export const architectureDiagrams: Record<string, ProjectArchData> = {
       nodes: [
         { label: "React DOM UI Layers", desc: "A11y portals, bento tags, horizontal grids, and fixed header interfaces.", x: 60, y: 50 },
         { label: "GSAP Scroll Wrapper", desc: "ScrollSmoother and ScrollTrigger plugins driving animations.", x: 220, y: 50 },
-        { label: "R3F WebGL Canvas", desc: "Renders lighting setups, camera viewports, and custom shaders.", x: 380, y: 50 },
+        { label: "Three.js Canvas", desc: "Renders lighting setups, camera viewports, and custom shaders.", x: 380, y: 50 },
         { label: "GLTF Bone Controller", desc: "Decrypted GLTF 3D model parsing skeleton rotations.", x: 540, y: 50 }
       ],
       connections: [
@@ -211,8 +211,8 @@ export const architectureDiagrams: Record<string, ProjectArchData> = {
     pipeline: {
       nodes: [
         { label: "Event Listeners Stream", desc: "Polls active scroll offset values and pointer hover client positions.", x: 60, y: 50 },
-        { label: "GSAP Lerper Node", desc: "Filters coordinate fluctuations and smooths position data.", x: 220, y: 50 },
-        { label: "Bone Quaternion Solver", desc: "Translates coordinates into Euler angles for head-tracking.", x: 380, y: 50 },
+        { label: "Pointer Target", desc: "Stores pointer coordinates for the next animation frame.", x: 220, y: 50 },
+        { label: "Head Rotation", desc: "Interpolates the head rotation toward the pointer target.", x: 380, y: 50 },
         { label: "WebGL GPU Render Paint", desc: "Draws updated bones matrices onto WebGL canvas frame.", x: 540, y: 50 }
       ],
       connections: [

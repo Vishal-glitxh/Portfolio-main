@@ -25,6 +25,11 @@ export const ArchitectureVisualizer = React.memo(({ projectName }: ArchitectureV
 
   const currentView = diagram[activeTab];
   const selectedNode = currentView.nodes[selectedNodeIndex];
+  const nodeWidth = Math.max(128, ...currentView.nodes.map(node => node.label.length * 8 + 24));
+  const gap = 24;
+  const padding = 10;
+  const diagramWidth = padding * 2 + currentView.nodes.length * (nodeWidth + gap) - gap;
+  const nodeLeft = (index: number) => padding + index * (nodeWidth + gap);
 
   return (
     <div className="architecture-visualizer">
@@ -43,11 +48,11 @@ export const ArchitectureVisualizer = React.memo(({ projectName }: ArchitectureV
       </div>
 
       {/* SVG Diagram Viewport */}
-      <div className="diagram-viewport-container diagram-anim">
-        <svg 
-          viewBox="0 0 600 120" 
-          width="100%" 
-          height="140px" 
+      <div key={activeTab} className="diagram-viewport-container diagram-anim">
+        <svg
+          viewBox={`0 0 ${diagramWidth} 100`}
+          width={diagramWidth}
+          height="100"
           className="architecture-svg"
         >
           {/* Render Connections */}
@@ -57,16 +62,16 @@ export const ArchitectureVisualizer = React.memo(({ projectName }: ArchitectureV
             return (
               <g key={idx}>
                 <line
-                  x1={fromNode.x}
+                  x1={nodeLeft(conn.from) + nodeWidth}
                   y1={fromNode.y}
-                  x2={toNode.x}
+                  x2={nodeLeft(conn.to)}
                   y2={toNode.y}
                   className="svg-conn-line"
                 />
                 <line
-                  x1={fromNode.x}
+                  x1={nodeLeft(conn.from) + nodeWidth}
                   y1={fromNode.y}
-                  x2={toNode.x}
+                  x2={nodeLeft(conn.to)}
                   y2={toNode.y}
                   className="svg-conn-line-anim"
                 />
@@ -78,11 +83,12 @@ export const ArchitectureVisualizer = React.memo(({ projectName }: ArchitectureV
           {currentView.nodes.map((node, idx) => {
             const isSelected = selectedNodeIndex === idx;
             return (
-              <g 
-                key={idx} 
+              <g
+                key={idx}
                 onClick={() => setSelectedNodeIndex(idx)}
                 className={`svg-node-group ${isSelected ? "selected" : ""}`}
                 role="button"
+                aria-pressed={isSelected}
                 tabIndex={0}
                 aria-label={`Inspect component: ${node.label}`}
                 onKeyDown={(e) => {
@@ -93,28 +99,28 @@ export const ArchitectureVisualizer = React.memo(({ projectName }: ArchitectureV
                 }}
               >
                 <rect
-                  x={node.x - 65}
+                  x={nodeLeft(idx)}
                   y={node.y - 20}
-                  width="130"
+                  width={nodeWidth}
                   height="40"
                   rx="6"
                   className="svg-node-rect-shadow"
                 />
                 <rect
-                  x={node.x - 65}
+                  x={nodeLeft(idx)}
                   y={node.y - 20}
-                  width="130"
+                  width={nodeWidth}
                   height="40"
                   rx="6"
                   className="svg-node-rect"
                 />
                 <text
-                  x={node.x}
+                  x={nodeLeft(idx) + nodeWidth / 2}
                   y={node.y + 4}
                   textAnchor="middle"
                   className="svg-node-text"
                 >
-                  {node.label.length > 18 ? `${node.label.substring(0, 16)}...` : node.label}
+                  {node.label}
                 </text>
               </g>
             );

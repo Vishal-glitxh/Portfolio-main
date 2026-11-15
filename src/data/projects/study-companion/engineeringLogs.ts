@@ -8,7 +8,7 @@ export const studyCompanionLogs: EngineeringNotebook = {
     {
       id: "companion-embeddings",
       title: "Local Sentence-Transformers vs OpenAI Embeddings API",
-      context: "Selecting the embedding model to extract 768-dimensional document vectors from student course notes.",
+      context: "Selecting the embedding model to extract document embeddings from student course notes.",
       reasoning: "Running Sentence-Transformers locally on the server prevents student data from leaking, guarantees completely offline operations, and eliminates external API call costs and API limits.",
       alternatives: [
         "OpenAI text-embedding-ada-002 (requires internet access, fees, and raises data privacy issues)",

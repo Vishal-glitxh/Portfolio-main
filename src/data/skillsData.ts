@@ -86,7 +86,7 @@ export const skillsData: SkillMapping[] = [
     category: "Frontend Engineering",
     expertise: "Advanced",
     strength: 84,
-    projects: ["portfolio"],
+    projects: [],
     displayOrder: 6,
     description: "React wrapper interface binding Three.js coordinates inside standard virtual DOM components."
   },

@@ -1,0 +1,41 @@
+name: Deploy Vercel Production
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: production-hosting
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    environment: production
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+      SITE_URL: https://vishalsuhas-dev.vercel.app
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate hosting configuration
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          test -n "$VERCEL_ORG_ID"
+          test -n "$VERCEL_PROJECT_ID"
+          test -n "$VERCEL_TOKEN"
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run lint && npm run test:unit && npm run build
+      - run: npm audit --audit-level=high
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm run test:e2e
+      - name: Deploy verified source to Vercel
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: npx --yes vercel@58.7.1 deploy --prod --yes --token "$VERCEL_TOKEN"
+      - run: node scripts/check-site.mjs "$SITE_URL"

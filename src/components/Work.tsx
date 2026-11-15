@@ -1,10 +1,7 @@
 import "./styles/Work.css";
 import WorkImage from "./WorkImage";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-
-gsap.registerPlugin(useGSAP);
+import { useLightweightLayout } from "../hooks/useLightweightLayout";
+import { useRef } from "react";
 
 const projects = [
   {
@@ -30,7 +27,7 @@ const projects = [
     bullets: [
       "Description: An AI-powered study companion that predicts likely examination questions using intelligent document analysis.",
       "Problem Statement: Suboptimal preparation due to student difficulties in identifying key exam topics and patterns.",
-      "Solution Overview: Built a Semantic-Match-Engine utilizing high-dimensional 768-dim embeddings and cosine similarity matches.",
+      "Solution Overview: Built a Semantic-Match-Engine utilizing sentence embeddings and cosine similarity matches.",
       "GitHub & Status: Under Development (70% progress). Repository hosted at github.com/Vishal-glitxh. Live demo under construction."
     ],
     image: "/images/ai_study_companion_mockup.png"
@@ -58,7 +55,7 @@ const projects = [
     bullets: [
       "Description: A premium, highly interactive portfolio featuring a 3D avatar that tracks user scroll and movement.",
       "Problem Statement: Displaying complex engineering skills and projects in a static, unengaging format.",
-      "Solution Overview: Integrated React Three Fiber canvas elements and GSAP ScrollSmoother pipelines with pixel-perfect layouts.",
+      "Solution Overview: Built the avatar with Three.js and added desktop scroll animations with GSAP.",
       "GitHub & Status: Completed. Repository hosted at github.com/Vishal-glitxh. Live demo is this website."
     ],
     image: "/images/portfolio_mockup.png"
@@ -70,60 +67,16 @@ interface WorkProps {
 }
 
 const Work = ({ onProjectClick }: WorkProps) => {
-  useGSAP(() => {
-    function s() {
-      const box = document.getElementsByClassName("work-box");
-      if (box.length === 0) return 0;
-      const rectLeft = document
-        .querySelector(".work-container")!
-        .getBoundingClientRect().left;
-      const rect = box[0].getBoundingClientRect();
-      const parentWidth = box[0].parentElement!.getBoundingClientRect().width;
-      const padding: number =
-        parseInt(window.getComputedStyle(box[0]).padding) / 2;
-      return rect.width * box.length - (rectLeft + parentWidth) + padding;
+  const lightweight = useLightweightLayout();
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  function scrollProjects(direction: number) {
+    const track = trackRef.current;
+    const card = track?.firstElementChild;
+    if (track && card) {
+      track.scrollBy({ left: direction * card.getBoundingClientRect().width, behavior: "smooth" });
     }
-
-    let r = s();
-    let debounceId: number | null = null;
-    function t() {
-      if (debounceId) {
-        clearTimeout(debounceId);
-      }
-      debounceId = setTimeout(() => {
-        r = s();
-      }, 200) as unknown as number;
-    }
-
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".work-section",
-        start: "top top",
-        end: "+=1500",
-        scrub: 0.5,
-        pinSpacing: true,
-        pin: true,
-        pinType: window.innerWidth > 1024 ? "transform" : "fixed",
-        id: "work",
-        invalidateOnRefresh: true,
-      },
-    });
-
-    timeline.to(".work-flex", {
-      x: () => -r,
-      duration: 500,
-      delay: 0.2,
-    });
-
-    window.addEventListener("resize", t);
-
-    // Clean up
-    return () => {
-      window.removeEventListener("resize", t);
-      timeline.kill();
-      ScrollTrigger.getById("work")?.kill();
-    };
-  }, []);
+  }
 
   return (
     <div className="work-section" id="work">
@@ -131,7 +84,13 @@ const Work = ({ onProjectClick }: WorkProps) => {
         <h2>
           My <span>Work</span>
         </h2>
-        <div className="work-flex">
+        {!lightweight && (
+          <div className="work-navigation">
+            <button aria-label="Scroll projects left" onClick={() => scrollProjects(-1)}>←</button>
+            <button aria-label="Scroll projects right" onClick={() => scrollProjects(1)}>→</button>
+          </div>
+        )}
+        <div className="work-flex" ref={trackRef}>
           {projects.map((project, index) => (
             <div 
               className="work-box" 

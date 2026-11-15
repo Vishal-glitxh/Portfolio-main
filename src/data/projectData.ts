@@ -5,7 +5,7 @@ export const projectData: Record<string, ProjectDetails> = {
     name: "NovaIsland",
     status: "Active Development",
     role: "macOS Software Engineer & AI Systems Developer",
-    duration: "Jan 2026 - Present",
+    duration: "Jan 2026 – Present",
     summary: "NovaIsland is a premium native macOS productivity platform that transforms the MacBook notch into an intelligent workspace combining AI assistance, productivity widgets, developer tools, and deep macOS integrations through a modular engine-based architecture.",
     problem: "Existing notch utilities mostly replicate the iPhone Dynamic Island while providing only simple widgets such as battery indicators or media controls. They lack AI-powered workflows, native desktop interactions, and plugin extensibility.",
     solution: "NovaIsland introduces an AI-first productivity platform for macOS that combines native SwiftUI experiences, intelligent widgets, multiple LLM providers, developer tooling, and plugin extensibility inside a Dynamic Island-inspired interface.",
@@ -43,14 +43,14 @@ export const projectData: Record<string, ProjectDetails> = {
     name: "AI Study Companion",
     status: "In Progress",
     role: "AI & NLP Developer",
-    duration: "Mar 2026 - Present",
+    duration: "Feb 2026 – Present",
     summary: "An AI-powered study companion that predicts likely examination questions using intelligent document analysis.",
     problem: "Suboptimal prep cycles due to student difficulties in identifying key exam topics, historical patterns, and core study points from raw course documents.",
     solution: "Engineered a Semantic-Match-Engine using NLP high-dimensional embeddings and cosine similarity to map and extract recurring conceptual patterns.",
     architectureData: {
       flow: "PDF study materials uploaded -> Text extraction & chunking -> Embeddings generated -> Cosine similarity comparisons -> Pattern extraction -> Question Generation.",
       components: "Sentence-Transformer pipeline, Similarity Matrix Node, React prep dashboard, MongoDB database storage.",
-      pipeline: "Raw Document text -> Vector chunks -> 768-dim Embeddings -> Similarity scoring matrix -> Predicted topic array."
+      pipeline: "Raw Document text -> Vector chunks -> Sentence embeddings -> Similarity scoring matrix -> Predicted topic array."
     },
     categories: {
       "Languages & Frameworks": ["Python", "React", "Node.js"],
@@ -59,7 +59,7 @@ export const projectData: Record<string, ProjectDetails> = {
     },
     richHighlights: [
       { title: "Cosine Similarity Engine", desc: "Calculates conceptual overlaps between courses using high-dimensional dot product." },
-      { title: "768-dim Embeddings model", desc: "Leveraged Sentence-Transformers for semantic parsing of course content." },
+      { title: "Sentence embedding model", desc: "Leveraged Sentence-Transformers for semantic parsing of course content." },
       { title: "MongoDB Vector Storage", desc: "Optimized database collections containing pre-computed question similarity scores." }
     ],
     challenges: "Optimizing the latency of similarity matrix computations on large PDF text inputs within the React frontend.",
@@ -81,7 +81,7 @@ export const projectData: Record<string, ProjectDetails> = {
     name: "Intelligent Development Platform (IDP)",
     status: "In Progress",
     role: "Full-Stack & Analytics Engineer",
-    duration: "May 2026 - Present",
+    duration: "Mar 2026 – Present",
     summary: "An employee development platform for skills mapping and talent visualization.",
     problem: "Difficulty for organizations to track individual developer potential, map capability matrices, and outline clear performance-growth paths.",
     solution: "Constructed an analytics dashboard utilizing a 9-Box Talent Matrix grid mapping performance and potential nodes to calculate developer progress.",
@@ -119,18 +119,18 @@ export const projectData: Record<string, ProjectDetails> = {
     name: "Personal Portfolio",
     status: "Live",
     role: "Frontend & 3D Interaction Developer",
-    duration: "Jul 2026 - Present",
+    duration: "Apr 2026 – Present",
     summary: "A personal portfolio featuring a 3D avatar that tracks user scroll and mouse movement.",
     problem: "Displaying complex engineering skills and projects in a static, unengaging format.",
-    solution: "Integrated React Three Fiber canvas elements and GSAP ScrollSmoother pipelines with pixel-perfect layouts.",
+    solution: "Built the avatar with Three.js and added desktop scroll animations with GSAP.",
     architectureData: {
-      flow: "Viewport mouse movement & scroll updates -> GSAP ScrollSmoother interpolator -> Three.js skeleton bone rotators -> Camera position matrix updates.",
-      components: "React Three Fiber WebGL canvas, decrypter loader node, GSAP ScrollSmoother wrapper, Portal-based overlay module.",
-      pipeline: "Mouse coordinates/scroll offset -> GSAP Lerp -> Skeleton bone rotation matrix -> WebGL renderer paint."
+      flow: "Pointer input → head rotation target → Three.js animation frame → WebGL canvas.",
+      components: "React UI, Three.js renderer, encrypted model loader, desktop GSAP scroll animations, and portal-mounted project panels.",
+      pipeline: "Pointer coordinates → interpolated bone rotation → rendered character frame."
     },
     categories: {
       "Languages & Typings": ["TypeScript", "JavaScript"],
-      "3D Rendering": ["Three.js", "React Three Fiber", "GLTF loaders"],
+      "3D Rendering": ["Three.js", "WebGL", "glTF loaders"],
       "Animations & Styles": ["GSAP", "ScrollTrigger", "ScrollSmoother", "CSS Grid"]
     },
     richHighlights: [
@@ -146,7 +146,7 @@ export const projectData: Record<string, ProjectDetails> = {
       "Optimize model load size using custom Draco geometry compression."
     ],
     github: "https://github.com/Vishal-glitxh",
-    demo: "https://vishalsuhas.com",
+    demo: "https://vishalsuhas-dev.vercel.app",
     quickFacts: [
       "Locks body scroll on panels",
       "Vite Code-splitting split chunks",

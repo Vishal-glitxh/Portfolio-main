@@ -312,7 +312,7 @@ export const performanceReviews: Record<string, PerformanceSecurityReview> = {
           id: "sentence-transformers",
           title: "NLP Similarity Core",
           type: "AI Layer",
-          description: "Local NLP calculation engine computing 768-dim conceptual vectors.",
+          description: "Local model that converts course text into sentence embeddings.",
           protocol: "REST API / Child Process IPC Channels",
           responsibilities: "Generates sentence embeddings, computes cosine similarity, predicts study topics.",
           scalingNotes: "Heavy CPU computation is isolated in worker threads. Scales horizontally as independent microservices.",

@@ -606,6 +606,20 @@
   min-width: 580px; /* Ensures grid nodes are legible and scrollable on small viewports */
 }
 
+.architecture-visualizer .architecture-svg {
+  min-width: 100%;
+  max-width: none;
+}
+
+.architecture-visualizer .svg-node-text {
+  font-size: 12px;
+}
+
+.architecture-visualizer .svg-node-group:focus-visible .svg-node-rect {
+  stroke: white;
+  stroke-width: 2;
+}
+
 /* SVG Line Connections */
 .svg-conn-line {
   stroke: rgba(255, 255, 255, 0.08);
@@ -1537,31 +1551,6 @@
   border-color: var(--accentColor) !important;
 }
 
-/* Project Development Timeline Styles */
-.project-timeline-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.timeline-stage-btn {
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.timeline-stage-btn:hover {
-  background: rgba(194, 164, 255, 0.03) !important;
-  border-color: rgba(194, 164, 255, 0.25) !important;
-  transform: translateY(-1px);
-}
-
-.timeline-stage-btn:focus-visible {
-  outline: 2px solid var(--accentColor);
-  outline-offset: 2px;
-}
-
-.timeline-stage-wrapper.active .timeline-stage-btn {
-  box-shadow: 0 0 10px rgba(194, 164, 255, 0.05);
-}
-
 /* Pulse animation for active stage node */
 .status-badge-pulse.active {
   animation: pulse-glow-active 2s infinite ease-in-out;
@@ -1585,9 +1574,6 @@
 @media (prefers-reduced-motion: reduce) {
   .status-badge-pulse.active {
     animation: none !important;
-  }
-  .timeline-stage-btn:hover {
-    transform: none !important;
   }
 }
 

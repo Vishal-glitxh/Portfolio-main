@@ -12,7 +12,7 @@ export const assistantData: Record<string, ProjectKnowledgeWorkspace> = {
         tags: ["Architecture", "Performance"],
         body: "NovaIsland was built natively using SwiftUI and AppKit instead of Electron to ensure minimal CPU and memory footprints. Electron packages ship a full Node runtime and Chromium engine, consuming 100MB+ of idle RAM and draining MacBook batteries. In contrast, NovaIsland runs on just 12MB of idle RAM and under 0.05% CPU. Additionally, native AppKit bridges are required to tap into macOS workspaces, custom system hotkeys, and floating NSPanel screen layers.",
         citations: [
-          { label: "Engineering Decisions", targetTab: "engineering", targetSectionId: "decisions" },
+          { label: "Engineering Decisions", targetTab: "architecture", targetSectionId: "decisions" },
           { label: "Performance Metrics", targetTab: "operations", targetSectionId: "performance" }
         ],
         category: "Architecture",
@@ -118,7 +118,7 @@ export const assistantData: Record<string, ProjectKnowledgeWorkspace> = {
         tags: ["Infrastructure", "Operations"],
         body: "Terraform state files are stored in a version-controlled Google Cloud Storage (GCS) bucket. State locking is enforced via GCS backend configurations to prevent concurrent modifications during CI runner execution blocks, securing infrastructure alignments.",
         citations: [
-          { label: "Deployment Architecture", targetTab: "architecture", targetSectionId: "deployment" }
+          { label: "Deployment Architecture", targetTab: "architecture", targetSectionId: "architecture-section" }
         ],
         category: "Architecture",
         suggestedFollowUps: ["Explain the firewall rules route collision.", "What security checks run in CI?"]

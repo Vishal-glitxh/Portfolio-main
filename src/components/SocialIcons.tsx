@@ -4,16 +4,17 @@ import {
 } from "react-icons/fa6";
 import "./styles/SocialIcons.css";
 import { TbNotes } from "react-icons/tb";
+import { useLightweightLayout } from "../hooks/useLightweightLayout";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
 
-import { trackResumeDownloaded } from "./utils/analytics";
-
 const SocialIcons = () => {
+  const lightweight = useLightweightLayout();
   useEffect(() => {
+    if (lightweight) return;
     const social = document.getElementById("social") as HTMLElement;
 
-    social.querySelectorAll("span").forEach((item) => {
+    const cleanups = Array.from(social.querySelectorAll("span")).map((item) => {
       const elem = item as HTMLElement;
       const link = elem.querySelector("a") as HTMLElement;
 
@@ -23,6 +24,7 @@ const SocialIcons = () => {
       let currentX = 0;
       let currentY = 0;
 
+      let frame = 0;
       const updatePosition = () => {
         currentX += (mouseX - currentX) * 0.1;
         currentY += (mouseY - currentY) * 0.1;
@@ -30,7 +32,7 @@ const SocialIcons = () => {
         link.style.setProperty("--siLeft", `${currentX}px`);
         link.style.setProperty("--siTop", `${currentY}px`);
 
-        requestAnimationFrame(updatePosition);
+        frame = requestAnimationFrame(updatePosition);
       };
 
       const onMouseMove = (e: MouseEvent) => {
@@ -51,10 +53,12 @@ const SocialIcons = () => {
       updatePosition();
 
       return () => {
-        elem.removeEventListener("mousemove", onMouseMove);
+        cancelAnimationFrame(frame);
+        document.removeEventListener("mousemove", onMouseMove);
       };
     });
-  }, []);
+    return () => cleanups.forEach(cleanup => cleanup());
+  }, [lightweight]);
 
   return (
     <div className="icons-section">
@@ -72,13 +76,9 @@ const SocialIcons = () => {
       </div>
       <a 
         className="resume-button" 
-        href="#"
-        onClick={(e) => {
-          e.preventDefault();
-          trackResumeDownloaded();
-        }}
+        href="mailto:vishalsuhas0662@gmail.com?subject=Resume%20request"
       >
-        <HoverLinks text="RESUME" />
+        <HoverLinks text="REQUEST RESUME" />
         <span>
           <TbNotes />
         </span>
