@@ -6,7 +6,7 @@ Welcome to my personal developer portfolio repository! This project highlights m
 
 ## 🔗 Live Links
 
-*   **Live Demo**: [vishalsuhas-dev.vercel.app](https://vishalsuhas-dev.vercel.app)
+*   **Live Demo**: [vishalsuhas-dev.vercel.app](https://vishalsuhas-dev.vercel.app/)
 *   **LinkedIn**: [linkedin.com/in/vishalsuhas](https://www.linkedin.com/in/vishalsuhas)
 *   **GitHub**: [github.com/Vishal-glitxh](https://github.com/Vishal-glitxh)
 *   **Email**: [vishalsuhas0662@gmail.com](mailto:vishalsuhas0662@gmail.com)
@@ -113,11 +113,6 @@ npm run preview
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 Copyright © 2026.
-# Portfolio-Main
-# Portfolio-Main
-# Portfolio-Main
-# Portfolio-Main
-# Portfolio-Main
 
 ## Verification and deployment
 
