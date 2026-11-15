@@ -253,8 +253,11 @@ const RecruiterPanel = ({ isOpen, onClose }: RecruiterPanelProps) => {
             <h4>Quick Actions</h4>
             <div className="recruiter-actions-grid">
               
-              <a href="mailto:vishalsuhas0662@gmail.com?subject=Resume%20request" className="recruiter-btn">
-                Request resume
+              <a href="/documents/vishal-suhas-cv.pdf" target="_blank" rel="noopener noreferrer" className="recruiter-btn">
+                View resume
+              </a>
+              <a href="/documents/vishal-suhas-cv.pdf" download="Vishal Suhas CV.pdf" className="recruiter-btn">
+                Download resume
               </a>
 
               <a 

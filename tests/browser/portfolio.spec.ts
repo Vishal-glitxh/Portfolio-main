@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-test('missing model cannot block navigation, project data, or resume requests', async ({ page }) => {
+test('missing model cannot block navigation, project data, or resume access', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => { errors.push(error.message); console.log(error.stack); });
   await page.route('**/models/character.enc', route => route.fulfill({ status: 404, body: 'Not found' }));
   await page.goto('/');
   await expect(page.locator('.resume-button')).toBeAttached({ timeout: 15000 });
   await expect(page.locator('.loading-screen')).toHaveCount(0, { timeout: 25000 });
-  await expect(page.locator('.resume-button')).toHaveAttribute('href', /mailto:.*subject=Resume/);
+  await expect(page.locator('.resume-button')).toHaveAttribute('href', '/documents/vishal-suhas-cv.pdf');
   const project = page.getByRole('button', { name: 'Open engineering details for NovaIsland', exact: true });
   await project.focus();
   await project.press('Enter');
