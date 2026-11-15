@@ -6,22 +6,29 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          I am an AI Engineer & Full-Stack Developer and Undergraduate Engineering Student at VTU passionate about developing intelligent software solutions that solve practical problems. My experience spans machine learning modeling, natural language processing, semantic search engines, and full-stack web integration. I focus on building clean applications, analyzing data patterns, and strengthening cybersecurity systems using Python, React, Node.js, and modern cloud deployment pipelines.
+          I’m Vishal Suhas, an AI &amp; ML engineering student at VTU, graduating
+          in 2028. I build AI applications, full-stack web tools, and native macOS
+          experiences.
         </p>
-        <div className="about-metrics-grid">
-          <div className="metric-card">
-            <span className="metric-num">4+</span>
-            <span className="metric-desc">AI & Dev Projects</span>
+        <p className="about-project-summary">
+          My projects include NovaIsland, a macOS productivity workspace, an AI
+          study companion with semantic search, and a platform for skills mapping
+          and analytics.
+        </p>
+        <dl className="about-skills">
+          <div>
+            <dt>AI &amp; data</dt>
+            <dd>Python · NLP · Semantic search · LLM integration</dd>
           </div>
-          <div className="metric-card">
-            <span className="metric-num">20+</span>
-            <span className="metric-desc">Tech & Frameworks</span>
+          <div>
+            <dt>Web development</dt>
+            <dd>React · TypeScript · Node.js · MongoDB</dd>
           </div>
-          <div className="metric-card">
-            <span className="metric-num">2</span>
-            <span className="metric-desc">IBM Certifications</span>
+          <div>
+            <dt>Native macOS</dt>
+            <dd>Swift · SwiftUI · AppKit</dd>
           </div>
-        </div>
+        </dl>
       </div>
     </div>
   );
