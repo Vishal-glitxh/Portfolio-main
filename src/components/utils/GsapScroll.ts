@@ -50,7 +50,7 @@ export function setCharTimeline(
             monitor = mesh;
             const basicMat = mat as THREE.MeshBasicMaterial;
             if (basicMat.color) {
-              basicMat.color.set("#FFFFFF");
+              basicMat.color.set("#ffffff");
             }
           }
         }
@@ -63,7 +63,7 @@ export function setCharTimeline(
         mat.transparent = true;
         mat.opacity = 0;
         if (mat.emissive) {
-          mat.emissive.set("#C8BFFF");
+          mat.emissive.set("#fce7c2");
           gsap.timeline({ repeat: -1, repeatRefresh: true }).to(mat, {
             emissiveIntensity: () => intensity * 8,
             duration: () => Math.random() * 0.6,

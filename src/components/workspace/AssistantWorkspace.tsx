@@ -134,8 +134,8 @@ export const AssistantWorkspace = React.memo(({
             >
               <div
                 style={{
-                  background: isUser ? "rgba(194, 164, 255, 0.08)" : "rgba(255,255,255,0.02)",
-                  border: isUser ? "1px solid rgba(194,164,255,0.15)" : "1px solid rgba(255,255,255,0.04)",
+                  background: isUser ? "rgba(var(--accent-rgb), 0.08)" : "rgba(255,255,255,0.02)",
+                  border: isUser ? "1px solid rgba(var(--accent-rgb),0.15)" : "1px solid rgba(255,255,255,0.04)",
                   borderRadius: isUser ? "10px 10px 0 10px" : "10px 10px 10px 0",
                   padding: "10px 12px",
                   maxWidth: "85%",
@@ -156,8 +156,8 @@ export const AssistantWorkspace = React.memo(({
                         onClick={() => handleCitationClick(cit)}
                         className="citation-btn"
                         style={{
-                          background: "rgba(194,164,255,0.05)",
-                          border: "1px solid rgba(194,164,255,0.2)",
+                          background: "rgba(var(--accent-rgb),0.05)",
+                          border: "1px solid rgba(var(--accent-rgb),0.2)",
                           borderRadius: "4px",
                           color: "var(--accentColor)",
                           fontSize: "9px",

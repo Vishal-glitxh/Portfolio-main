@@ -1,10 +1,11 @@
 :root {
-  /* Colors */
-  --color-accent-solid: #c2a4ff;
-  --color-accent-glow: rgba(194, 164, 255, 0.4);
-  --color-accent-subtle: rgba(194, 164, 255, 0.05);
-  --color-accent-border: rgba(194, 164, 255, 0.2);
-  --color-bg-dark: #0a0a0f;
+  /* Warm charcoal and amber palette */
+  --accent-rgb: 239, 184, 92;
+  --color-accent-solid: #efb85c;
+  --color-accent-glow: rgba(var(--accent-rgb), 0.4);
+  --color-accent-subtle: rgba(var(--accent-rgb), 0.05);
+  --color-accent-border: rgba(var(--accent-rgb), 0.2);
+  --color-bg-dark: #100e0b;
   --color-bg-panel: rgba(255, 255, 255, 0.01);
   --color-border-light: rgba(255, 255, 255, 0.05);
   --color-border-subtle: rgba(255, 255, 255, 0.03);

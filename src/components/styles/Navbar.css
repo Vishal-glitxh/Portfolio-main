@@ -51,7 +51,7 @@
   align-items: center;
   padding: 6px 16px;
   border-radius: 30px;
-  border: 1px solid rgba(194, 164, 255, 0.15);
+  border: 1px solid rgba(var(--accent-rgb), 0.15);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
   backdrop-filter: blur(8px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -59,8 +59,8 @@
 
 .navbar-title:hover {
   border-color: var(--accentColor);
-  background: rgba(194, 164, 255, 0.06);
-  box-shadow: 0 0 20px rgba(194, 164, 255, 0.25);
+  background: rgba(var(--accent-rgb), 0.06);
+  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.25);
   transform: translateY(-1.5px) scale(1.02);
 }
 @media only screen and (min-width: 500px) {
@@ -73,7 +73,7 @@
     font-size: 14px;
   }
   .header ul li {
-    color: #eae5ec;
+    color: #ece9e5;
   }
   .navbar-title {
     font-size: 12px;

@@ -9,7 +9,7 @@ export function initialFX() {
   document.getElementsByTagName("main")[0].classList.add("main-active");
   if (isLightweightLayout()) return;
   gsap.to("body", {
-    backgroundColor: "#0b080c",
+    backgroundColor: "#0b0a09",
     duration: 0.5,
     delay: 1,
   });

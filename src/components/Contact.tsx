@@ -18,7 +18,7 @@ const Contact = () => {
           <div className="contact-box">
             <h4>Location</h4>
             <p style={{ margin: "10px 0 20px 0" }}>
-              <span style={{ color: "#eae5ec", fontSize: "1.1rem", fontWeight: 300 }}>
+              <span style={{ color: "#ece9e5", fontSize: "1.1rem", fontWeight: 300 }}>
                 Bangalore, Karnataka, India
               </span>
             </p>

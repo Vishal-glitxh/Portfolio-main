@@ -40,7 +40,7 @@ export const TraceVisualizer = React.memo(({ traceSpans }: TraceVisualizerProps)
                     left: `${(span.startOffsetMs / 180) * 100}%`,
                     width: `${(span.durationMs / 180) * 100}%`,
                     height: "100%",
-                    background: isHovered ? "var(--accentColor)" : "rgba(194, 164, 255, 0.4)",
+                    background: isHovered ? "var(--accentColor)" : "rgba(var(--accent-rgb), 0.4)",
                     borderRadius: "4px",
                     transition: "background 0.2s ease"
                   }}

@@ -2,7 +2,7 @@
   width: min(86%, 1180px);
   margin-inline: auto;
   padding-block: clamp(56px, 8vw, 120px);
-  color: #f5f0fc;
+  color: #fdf8ef;
   scroll-margin-top: 80px;
 }
 .education-section h2 {
@@ -12,7 +12,7 @@
   line-height: 1.06;
   letter-spacing: -.055em;
 }
-.education-section h2 span { color: #bb98ed; }
+.education-section h2 span { color: #f1cf94; }
 .education-layout { display: grid; grid-template-columns: minmax(0, .94fr) minmax(0, 1.06fr); gap: clamp(20px, 4vw, 55px); }
 .education-degree {
   position: relative;
@@ -23,9 +23,9 @@
   justify-content: space-between;
   gap: 34px;
   padding: clamp(24px, 3.4vw, 48px);
-  border: 1px solid #59466e;
+  border: 1px solid #6a5e4a;
   border-radius: 24px;
-  background: linear-gradient(140deg, #392b49, #21192c 55%, #17121d);
+  background: linear-gradient(140deg, #443d30, #27241e 55%, #1b1814);
 }
 .education-degree::before {
   content: "";
@@ -36,26 +36,26 @@
   top: -9rem;
   right: -6rem;
   border-radius: 50%;
-  background: repeating-radial-gradient(circle, transparent 0 16px, #c3a9e735 17px, transparent 18px);
+  background: repeating-radial-gradient(circle, transparent 0 16px, #ead1a635 17px, transparent 18px);
 }
-.education-year { display: flex; align-items: flex-start; gap: 14px; color: #d6c4ea; font-size: .85rem; }
+.education-year { display: flex; align-items: flex-start; gap: 14px; color: #ecddc2; font-size: .85rem; }
 .education-year svg { font-size: 1.4rem; }
-.education-year strong { display: block; color: #f5eaff; font-weight: 500; font-size: clamp(2.4rem, 4vw, 4rem); line-height: 1.12; letter-spacing: -.055em; }
-.education-section p { margin: 0; line-height: 1.55; color: #c6bece; }
-.education-section .education-label, .education-focus h4 { margin: 0; color: #d6b9f2; font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; }
+.education-year strong { display: block; color: #fef7eb; font-weight: 500; font-size: clamp(2.4rem, 4vw, 4rem); line-height: 1.12; letter-spacing: -.055em; }
+.education-section p { margin: 0; line-height: 1.55; color: #cfc8bd; }
+.education-section .education-label, .education-focus h4 { margin: 0; color: #f4deb7; font-size: .72rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; }
 .education-degree-copy h3 { margin: 10px 0 12px; font-size: clamp(1.85rem, 3vw, 3rem); font-weight: 500; line-height: 1.06; letter-spacing: -.045em; }
-.education-focus { padding-top: 20px; border-top: 1px solid #594660; }
+.education-focus { padding-top: 20px; border-top: 1px solid #625744; }
 .education-focus ul { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 0; padding: 0; list-style: none; }
-.education-focus li { padding: 5px 10px; border: 1px solid #53445d; border-radius: 20px; color: #dfd2e8; font-size: .8rem; }
+.education-focus li { padding: 5px 10px; border: 1px solid #5f5442; border-radius: 20px; color: #eae0d0; font-size: .8rem; }
 .education-milestones { margin: 0; padding: 0; list-style: none; }
 .education-milestones li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 18px; padding: 8px 0 22px; position: relative; }
 .education-milestones li:last-child { padding-bottom: 0; }
-.education-milestones li:not(:last-child)::before { content: ""; position: absolute; left: 20px; top: 49px; bottom: -8px; width: 1px; background: #51435d; }
-.education-marker { display: grid; place-items: center; height: 42px; box-sizing: border-box; border-radius: 50%; border: 1px solid #5c4871; color: #d7b6ff; background: #211a29; font-size: 18px; }
+.education-milestones li:not(:last-child)::before { content: ""; position: absolute; left: 20px; top: 49px; bottom: -8px; width: 1px; background: #5e5442; }
+.education-marker { display: grid; place-items: center; height: 42px; box-sizing: border-box; border-radius: 50%; border: 1px solid #6d614c; color: #fce3b9; background: #26231d; font-size: 18px; }
 .education-milestones h3 { margin: 5px 0 6px; font-size: clamp(1.25rem, 1.8vw, 1.7rem); line-height: 1.17; font-weight: 550; letter-spacing: -.025em; }
-.education-milestones summary { width: fit-content; cursor: pointer; padding: 12px 0; color: #d6b9f2; font-size: .88rem; }
+.education-milestones summary { width: fit-content; cursor: pointer; padding: 12px 0; color: #f4deb7; font-size: .88rem; }
 .education-milestones summary:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-.education-milestones code { display: block; overflow-wrap: anywhere; color: #e1d4ec; font-size: .84rem; }
+.education-milestones code { display: block; overflow-wrap: anywhere; color: #eee4d2; font-size: .84rem; }
 @media (max-width: 720px) {
   .education-section { width: 90%; }
   .education-layout { grid-template-columns: minmax(0, 1fr); gap: 26px; }

@@ -359,7 +359,7 @@ const ProjectExplorerInner = ({ projectName, onClose }: ProjectExplorerProps) =>
               position: "sticky", 
               top: "-30px", 
               zIndex: 10, 
-              background: "#0a0a0f", 
+              background: "#100e0b", 
               backdropFilter: "blur(8px)" 
             }}
           >
@@ -375,8 +375,8 @@ const ProjectExplorerInner = ({ projectName, onClose }: ProjectExplorerProps) =>
                   onClick={() => setActiveTab(tab.id)}
                   className={`explorer-tab-btn ${isActive ? "active" : ""}`}
                   style={{
-                    background: isActive ? "rgba(194,164,255,0.05)" : "none",
-                    border: isActive ? "1px solid rgba(194,164,255,0.2)" : "1px solid transparent",
+                    background: isActive ? "rgba(var(--accent-rgb),0.05)" : "none",
+                    border: isActive ? "1px solid rgba(var(--accent-rgb),0.2)" : "1px solid transparent",
                     borderRadius: "6px",
                     color: isActive ? "#ffffff" : "#adacac",
                     fontSize: "11px",
@@ -395,7 +395,7 @@ const ProjectExplorerInner = ({ projectName, onClose }: ProjectExplorerProps) =>
                     className="tab-count-badge"
                     style={{
                       fontSize: "8px",
-                      background: isActive ? "rgba(194,164,255,0.2)" : "rgba(255,255,255,0.05)",
+                      background: isActive ? "rgba(var(--accent-rgb),0.2)" : "rgba(255,255,255,0.05)",
                       color: isActive ? "#ffffff" : "#666",
                       padding: "1px 5px",
                       borderRadius: "10px"

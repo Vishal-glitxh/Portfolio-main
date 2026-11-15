@@ -75,7 +75,7 @@ export const InfrastructureVisualizer = React.memo(({ nodes }: InfrastructureVis
       </div>
 
       {nodes[selectedNodeIndex] && (
-        <div className="selected-node-detail-card" style={{ background: "rgba(194, 164, 255, 0.02)", border: "1px solid rgba(194, 164, 255, 0.15)", borderRadius: "8px", padding: "14px", marginTop: "5px" }}>
+        <div className="selected-node-detail-card" style={{ background: "rgba(var(--accent-rgb), 0.02)", border: "1px solid rgba(var(--accent-rgb), 0.15)", borderRadius: "8px", padding: "14px", marginTop: "5px" }}>
           <h5 style={{ margin: "0 0 6px 0", fontSize: "11px", fontWeight: 700, color: "#ffffff", textTransform: "uppercase" }}>
             {nodes[selectedNodeIndex].title} &bull; <span style={{ color: "var(--accentColor)" }}>{nodes[selectedNodeIndex].type}</span>
           </h5>

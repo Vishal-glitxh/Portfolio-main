@@ -35,7 +35,7 @@ export const PipelineVisualizer = React.memo(({ pipeline }: PipelineVisualizerPr
                 <button
                   onClick={() => setSelectedPipelineStepId(selectedPipelineStepId === step.id ? null : step.id)}
                   style={{
-                    background: isSelected ? "rgba(194,164,255,0.1)" : "rgba(255,255,255,0.02)",
+                    background: isSelected ? "rgba(var(--accent-rgb),0.1)" : "rgba(255,255,255,0.02)",
                     border: isSelected ? "1px solid var(--accentColor)" : "1px solid rgba(255,255,255,0.05)",
                     borderRadius: "8px",
                     padding: "10px 12px",

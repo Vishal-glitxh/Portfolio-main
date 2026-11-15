@@ -9,7 +9,7 @@
   line-height: 1.5;
   scroll-behavior: smooth;
   color-scheme: light dark;
-  color: #eae5ec;
+  color: #ece9e5;
   background-color: var(--backgroundColor);
 
   font-synthesis: none;
@@ -19,8 +19,8 @@
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
-  --accentColor: #c2a4ff;
-  --backgroundColor: #0b080c;
+  --accentColor: #efb85c;
+  --backgroundColor: #0b0a09;
   --z-base: 1;
   --z-content: 10;
   --z-navbar: 100;

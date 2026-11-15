@@ -117,7 +117,7 @@ const Work = ({ onProjectClick }: WorkProps) => {
                   </div>
                 </div>
                 <div className="project-details" style={{ marginBottom: "12px", borderBottom: "1px dashed rgba(255,255,255,0.1)", paddingBottom: "8px" }}>
-                  <p style={{ fontSize: "14px", fontWeight: 600, color: "#eae5ec", margin: 0 }}>
+                  <p style={{ fontSize: "14px", fontWeight: 600, color: "#ece9e5", margin: 0 }}>
                     Role: {project.role}
                   </p>
                   <p style={{ fontSize: "12px", color: "var(--accentColor)", margin: "4px 0 0 0", opacity: 0.8 }}>

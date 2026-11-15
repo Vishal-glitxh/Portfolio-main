@@ -289,7 +289,7 @@ export const OperationsWorkspace = React.memo(({
                       key={level}
                       onClick={() => setSelectedLogLevel(level)}
                       style={{
-                        background: selectedLogLevel === level ? "rgba(194,164,255,0.1)" : "none",
+                        background: selectedLogLevel === level ? "rgba(var(--accent-rgb),0.1)" : "none",
                         border: selectedLogLevel === level ? "1px solid var(--accentColor)" : "1px solid transparent",
                         borderRadius: "4px",
                         color: selectedLogLevel === level ? "#ffffff" : "#666",
