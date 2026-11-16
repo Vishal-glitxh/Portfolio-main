@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import "./styles/WhatIDo.css";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLightweightLayout } from "../hooks/useLightweightLayout";
 
 const WhatIDo = () => {
   const containerRef = useRef<(HTMLDivElement | null)[]>([]);
+  const lightweight = useLightweightLayout();
   const setRef = (el: HTMLDivElement | null, index: number) => {
     containerRef.current[index] = el;
   };
@@ -11,7 +13,7 @@ const WhatIDo = () => {
     const currentContainers = containerRef.current;
     const clickListeners = new Map<HTMLDivElement, () => void>();
 
-    if (ScrollTrigger.isTouch) {
+    if (ScrollTrigger.isTouch && !lightweight) {
       currentContainers.forEach((container) => {
         if (container) {
           container.classList.remove("what-noTouch");
@@ -31,7 +33,7 @@ const WhatIDo = () => {
         }
       });
     };
-  }, []);
+  }, [lightweight]);
   return (
     <div className="whatIDO">
       <div className="what-box">

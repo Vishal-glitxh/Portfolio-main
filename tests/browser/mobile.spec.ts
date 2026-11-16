@@ -39,7 +39,7 @@ test('optional 3D stays in the hero and failure never blocks mobile content', as
   await page.goto('/');
   await page.getByRole('button', { name: /View 3D character/ }).click();
   await expect(page.locator('#landingDiv .character-container')).toBeVisible();
-  await expect(page.getByRole('status')).toContainText(/could not load|unavailable/);
+  await expect(page.locator('#landingDiv .character-status')).toContainText(/could not load|unavailable/);
   await expect(page.locator('.loading-screen')).toHaveCount(0);
   await page.getByRole('button', { name: 'Close 3D character' }).click();
   await expect(page.locator('canvas')).toHaveCount(0);
