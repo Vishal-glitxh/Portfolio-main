@@ -4,6 +4,7 @@
   "installCommand": "npm ci",
   "buildCommand": "npm run lint && npm run test:unit && npm run build",
   "outputDirectory": "dist",
+  "rewrites": [{ "source": "/projects/:slug", "destination": "/index.html" }],
   "headers": [
     {
       "source": "/assets/(.*)",

@@ -116,3 +116,25 @@ test('engineering slides stay in the chosen category across navigation methods',
   }
   expect(await deck.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
 });
+
+test('mobile menu, artwork viewer, and project link work from a fresh visit', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/');
+  const menu = page.getByRole('button', { name: 'Toggle navigation menu' });
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  await menu.click();
+  await expect(menu).toHaveAttribute('aria-expanded', 'true');
+  await page.locator('#primary-navigation a[href="#work"]').click();
+  await expect(menu).toHaveAttribute('aria-expanded', 'false');
+  await page.getByRole('button', { name: 'Enlarge NovaIsland' }).click();
+  await expect(page.getByRole('dialog', { name: 'Project artwork viewer' })).toBeVisible();
+  await page.getByRole('button', { name: 'Next artwork' }).click();
+  await expect(page.getByRole('dialog', { name: 'Project artwork viewer' })).toContainText('AI Study Companion');
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog', { name: 'Project artwork viewer' })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Open engineering details for NovaIsland', exact: true }).click();
+  await expect(page).toHaveURL(/\/projects\/novaisland$/);
+  await expect(page.getByText('Case study', { exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('dialog')).toBeVisible();
+});

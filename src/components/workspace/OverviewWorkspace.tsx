@@ -23,6 +23,16 @@ export const OverviewWorkspace = React.memo(({
 }: OverviewWorkspaceProps) => {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+      <section className="case-study" aria-label="Project case study">
+        <h4>Case study</h4>
+        <div className="case-study-grid">
+          <div><h5>Brief</h5><p>{project.summary}</p></div>
+          <div><h5>Process</h5><p>{project.challenges}</p><p>{project.learnings}</p></div>
+          <div><h5>Tools</h5><p>{Object.values(project.categories).flat().join(" · ")}</p></div>
+          <div><h5>Outcome</h5><p>{project.solution}</p><p className="case-study-status">Current status · {project.status}</p></div>
+        </div>
+      </section>
+
       {/* 1. Collapsible Section: Project Summary */}
       <AccordionItem
         id="summary"

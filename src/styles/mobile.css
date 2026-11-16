@@ -64,3 +64,9 @@
 .mobile-layout .social-icons span { width: 44px; height: 44px; }
 .mobile-layout .social-icons a { position: static; transform: none; width: 44px; height: 44px; align-items: center; justify-content: center; }
 .mobile-layout .icons-section .resume-button { letter-spacing: 1px; color: #efb85c; }
+
+.mobile-layout .header .mobile-menu-toggle { margin-left: auto; border: 1px solid #806b48; border-radius: 8px; background: #201b14; color: white; padding: 0 16px; cursor: pointer; }
+.mobile-layout .header ul.mobile-menu-closed { display: none; }
+.mobile-layout .header ul:not(.mobile-menu-closed) { width: 100%; display: flex; flex-direction: column; align-items: stretch; gap: 4px; padding: 8px; border: 1px solid #604e32; border-radius: 12px; background: #19150f; box-sizing: border-box; }
+.mobile-layout .header ul:not(.mobile-menu-closed) li { width: 100%; }
+.mobile-layout .header ul:not(.mobile-menu-closed) a, .mobile-layout .header ul:not(.mobile-menu-closed) button { width: 100%; justify-content: flex-start; padding: 10px; box-sizing: border-box; }

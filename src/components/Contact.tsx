@@ -1,11 +1,27 @@
+import { useState, type FormEvent } from "react";
 import { MdArrowOutward, MdCopyright } from "react-icons/md";
 import "./styles/Contact.css";
 
 const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const sendEnquiry = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+    const body = encodeURIComponent(`${message}\n\nFrom ${name} (${email})`);
+    window.location.href = `mailto:vishalsuhas0662@gmail.com?subject=${subject}&body=${body}`;
+  };
   return (
     <div className="contact-section section-container" id="contact">
       <div className="contact-container">
         <h3>Contact</h3>
+        <form className="contact-form" onSubmit={sendEnquiry}>
+          <label>Name<input required value={name} onChange={event => setName(event.target.value)} autoComplete="name" /></label>
+          <label>Email<input required type="email" value={email} onChange={event => setEmail(event.target.value)} autoComplete="email" /></label>
+          <label>Message<textarea required value={message} onChange={event => setMessage(event.target.value)} rows={4} /></label>
+          <button type="submit">Open email to send enquiry</button>
+        </form>
         <div className="contact-flex">
           <div className="contact-box">
             <h4>Email</h4>

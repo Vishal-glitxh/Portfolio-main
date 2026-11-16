@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
 import { gsap } from "gsap";
@@ -18,6 +18,7 @@ interface NavbarProps {
 
 const Navbar = ({ isRecruiterOpen, onToggleRecruiter }: NavbarProps) => {
   const lightweight = useLightweightLayout();
+  const [menuOpen, setMenuOpen] = useState(false);
   const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
   const wasRecruiterOpen = useRef(false);
@@ -62,7 +63,8 @@ const Navbar = ({ isRecruiterOpen, onToggleRecruiter }: NavbarProps) => {
         >
           vishalsuhas0662@gmail.com
         </a>
-        <ul>
+        {lightweight && <button className="mobile-menu-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded={menuOpen} aria-controls="primary-navigation" onClick={() => setMenuOpen(value => !value)}>{menuOpen ? "Close" : "Menu"}</button>}
+        <ul id="primary-navigation" className={lightweight && !menuOpen ? "mobile-menu-closed" : ""} onClick={event => { if ((event.target as HTMLElement).closest("a, button")) setMenuOpen(false); }}>
           <li>
             <button
               ref={toggleButtonRef}

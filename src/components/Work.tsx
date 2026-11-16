@@ -3,7 +3,11 @@ import WorkImage from "./WorkImage";
 import { useLightweightLayout } from "../hooks/useLightweightLayout";
 import { useRef } from "react";
 
-const projects = [
+interface WorkProject {
+  num: string; name: string; category: string; role: string; stack: string; bullets: string[]; image: string; video?: string;
+}
+
+const projects: WorkProject[] = [
   {
     num: "01",
     name: "NovaIsland",
@@ -64,9 +68,10 @@ const projects = [
 
 interface WorkProps {
   onProjectClick: (name: string) => void;
+  onArtworkClick?: (name: string) => void;
 }
 
-const Work = ({ onProjectClick }: WorkProps) => {
+const Work = ({ onProjectClick, onArtworkClick }: WorkProps) => {
   const lightweight = useLightweightLayout();
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -134,7 +139,7 @@ const Work = ({ onProjectClick }: WorkProps) => {
                   </ul>
                 </div>
               </div>
-              <WorkImage image={project.image} alt={project.name} />
+              <WorkImage image={project.image} alt={project.name} video={project.video} onOpen={() => onArtworkClick?.(project.name)} />
             </div>
           ))}
         </div>

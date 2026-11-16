@@ -19,6 +19,7 @@ import { useScrollLock } from "./utils/useScrollLock";
 import { KnowledgeDocument, KnowledgeCitation } from "../types";
 
 import "./styles/ProjectExplorer.css";
+import { projectPath } from "../data/projectLinks";
 
 interface ProjectExplorerProps {
   projectName: string;
@@ -331,6 +332,7 @@ const ProjectExplorerInner = ({ projectName, onClose }: ProjectExplorerProps) =>
         <div className="explorer-header">
           <div>
             <h3 id="explorer-title">{project.name}</h3>
+            <a className="project-share-link" href={projectPath(projectName)} target="_blank" rel="noopener noreferrer">Open shareable link</a>
           </div>
           <button 
             ref={closeButtonRef}

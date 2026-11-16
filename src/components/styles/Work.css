@@ -202,3 +202,7 @@
     height: auto;
   }
 }
+
+.work-image-button { border: 0; background: transparent; cursor: zoom-in; padding: 0; color: #d8cdbb; }
+.work-image-fallback { display: grid; place-items: center; min-height: 180px; padding: 20px; border: 1px dashed #8f7953; }
+.work-video-toggle { min-height: 44px; border: 1px solid #8f7953; background: #201b14; color: white; border-radius: 8px; cursor: pointer; }

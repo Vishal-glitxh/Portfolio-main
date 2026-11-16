@@ -1,44 +1,25 @@
 import { useState } from "react";
-import { MdArrowOutward } from "react-icons/md";
 
 interface Props {
   image: string;
   alt?: string;
   video?: string;
-  link?: string;
+  onOpen?: () => void;
 }
 
-const WorkImage = (props: Props) => {
-  const [isVideo, setIsVideo] = useState(false);
-  const [video, setVideo] = useState("");
-  const handleMouseEnter = async () => {
-    if (props.video) {
-      setIsVideo(true);
-      const response = await fetch(`src/assets/${props.video}`);
-      const blob = await response.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      setVideo(blobUrl);
-    }
-  };
-
+const WorkImage = ({ image, alt = "Project artwork", video, onOpen }: Props) => {
+  const [failed, setFailed] = useState(false);
+  const [playing, setPlaying] = useState(false);
   return (
     <div className="work-image">
-      <a
-        className="work-image-in"
-        href={props.link}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={() => setIsVideo(false)}
-        target="_blank"
-        data-cursor={"disable"}
-      >
-        {props.link && (
-          <div className="work-link">
-            <MdArrowOutward />
-          </div>
-        )}
-        <img src={props.image} alt={props.alt} />
-        {isVideo && <video src={video} autoPlay muted playsInline loop></video>}
-      </a>
+      {video && playing ? (
+        <video src={video} poster={image} controls playsInline autoPlay onError={() => setPlaying(false)} aria-label={`${alt} video`} />
+      ) : (
+        <button type="button" className="work-image-in work-image-button" onClick={event => { event.stopPropagation(); onOpen?.(); }} aria-label={`Enlarge ${alt}`}>
+          {failed ? <span className="work-image-fallback">Artwork unavailable · Open project details for more information</span> : <img src={image} alt={alt} loading="lazy" onError={() => setFailed(true)} />}
+        </button>
+      )}
+      {video && <button type="button" className="work-video-toggle" onClick={event => { event.stopPropagation(); setPlaying(value => !value); }}>{playing ? "Pause video" : "Play video"}</button>}
     </div>
   );
 };
