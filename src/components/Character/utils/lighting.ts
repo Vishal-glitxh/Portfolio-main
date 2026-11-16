@@ -42,14 +42,14 @@ const setLighting = (scene: THREE.Scene) => {
   }
   const duration = 2;
   const ease = "power2.inOut";
-  function turnOnLights() {
+  function turnOnLights(lightweight = false) {
     gsap.to(scene, {
-      environmentIntensity: 0.64,
+      environmentIntensity: lightweight ? 0.9 : 0.64,
       duration: duration,
       ease: ease,
     });
     gsap.to(directionalLight, {
-      intensity: 1,
+      intensity: lightweight ? 1.3 : 1,
       duration: duration,
       ease: ease,
     });

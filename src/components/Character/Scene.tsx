@@ -26,6 +26,8 @@ const Scene = () => {
     let frame = 0;
     let introTimer: ReturnType<typeof setTimeout> | undefined;
     let character: THREE.Object3D | undefined;
+    let mobileRig: THREE.Group | undefined;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let animations: ReturnType<typeof setAnimations> | undefined;
     let cleanupHover: (() => void) | undefined;
     let cleanupTimeline: (() => void) | undefined;
@@ -33,7 +35,7 @@ const Scene = () => {
     const scene = new THREE.Scene();
     let renderer: THREE.WebGLRenderer;
     try {
-      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: !lightweight });
+      renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     } catch (error) {
       console.warn("3D unavailable; continuing with the portfolio.", error);
       setStatus("3D is unavailable on this device. You can still explore the portfolio.");
@@ -42,12 +44,13 @@ const Scene = () => {
     }
     const rect = container.getBoundingClientRect();
     renderer.setSize(rect.width, Math.max(1, rect.height));
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, lightweight ? 1 : 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, lightweight ? 1.5 : 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = lightweight ? 1.25 : 1;
     container.appendChild(renderer.domElement);
     const camera = new THREE.PerspectiveCamera(14.5, rect.width / Math.max(1, rect.height), 0.1, 1000);
     camera.position.set(0, 13.1, 24.7);
-    camera.zoom = lightweight ? 0.65 : 1.1;
+    camera.zoom = lightweight ? 0.72 : 1.1;
     camera.updateProjectionMatrix();
     const light = setLighting(scene);
     const progress = setProgress(setLoading);
@@ -78,7 +81,13 @@ const Scene = () => {
         const screenLight = character.getObjectByName("screenlight");
         if (screenLight) screenLight.visible = false;
       }
-      scene.add(character);
+      if (lightweight) {
+        mobileRig = new THREE.Group();
+        mobileRig.add(character);
+        scene.add(mobileRig);
+      } else {
+        scene.add(character);
+      }
       animations = setAnimations(gltf);
       if (hoverDivRef.current) cleanupHover = animations.hover(gltf, hoverDivRef.current);
       setStatus("");
@@ -92,9 +101,9 @@ const Scene = () => {
         if (disposed) return;
         introTimer = setTimeout(() => {
           if (disposed) return;
-          light.turnOnLights();
+          light.turnOnLights(lightweight);
           animations?.startIntro();
-        }, 2500);
+        }, lightweight ? 150 : 2500);
       });
     }).catch(fail);
     const onMouseMove = (event: MouseEvent) => handleMouseMove(event, (x, y) => { mouse = { x, y }; });
@@ -117,6 +126,10 @@ const Scene = () => {
       frame = requestAnimationFrame(animate);
       if (!visible || document.hidden || (lightweight && now - lastFrame < 1000 / 30)) return;
       lastFrame = now;
+      if (mobileRig && !reducedMotion) {
+        mobileRig.rotation.y = Math.sin(now * 0.0007) * 0.065;
+        mobileRig.position.y = Math.sin(now * 0.0014) * 0.025;
+      }
       if (head) handleHeadRotation(head, mouse.x, mouse.y, interpolation.x, interpolation.y, THREE.MathUtils.lerp);
       if (screen) light.setPointLight(screen);
       animations?.mixer.update(Math.min(clock.getDelta(), 0.05));
