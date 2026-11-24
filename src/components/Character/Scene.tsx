@@ -1,15 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { isLightweightLayout } from "../../hooks/useLightweightLayout";
 import * as THREE from "three";
-import gsap from "gsap";
 import setCharacter, { disposeObject } from "./utils/character";
 import setLighting from "./utils/lighting";
 import { useLoading } from "../../context/LoadingProvider";
 import handleResize from "./utils/resizeUtils";
 import { handleMouseMove, handleTouchEnd, handleHeadRotation, handleTouchMove } from "./utils/mouseUtils";
 import setAnimations from "./utils/animationUtils";
-import { setProgress } from "../utils/setProgress";
-import { setCharTimeline } from "../utils/GsapScroll";
 
 const Scene = () => {
   const [status, setStatus] = useState("Loading 3D character…");
@@ -30,8 +27,6 @@ const Scene = () => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let animations: ReturnType<typeof setAnimations> | undefined;
     let cleanupHover: (() => void) | undefined;
-    let cleanupTimeline: (() => void) | undefined;
-    const context = gsap.context(() => {});
     const scene = new THREE.Scene();
     let renderer: THREE.WebGLRenderer;
     try {
@@ -53,7 +48,6 @@ const Scene = () => {
     camera.zoom = lightweight ? 0.72 : 1.1;
     camera.updateProjectionMatrix();
     const light = setLighting(scene);
-    const progress = setProgress(setLoading);
     const model = setCharacter(renderer, scene, camera);
     let head: THREE.Object3D | undefined;
     let screen: THREE.Object3D | undefined;
@@ -64,7 +58,7 @@ const Scene = () => {
       console.warn("3D unavailable; continuing with the portfolio.", error);
       controller.abort();
       setStatus("3D could not load. You can still explore the portfolio.");
-      progress.clear();
+      setLoading(100);
     };
     const timeout = setTimeout(() => fail(new Error("Model loading timed out")), 15000);
     const onResize = () => {
@@ -91,20 +85,15 @@ const Scene = () => {
       animations = setAnimations(gltf);
       if (hoverDivRef.current) cleanupHover = animations.hover(gltf, hoverDivRef.current);
       setStatus("");
-      if (!lightweight) context.add(() => {
-        cleanupTimeline = setCharTimeline(character!, camera);
-      });
       head = character.getObjectByName("spine006");
       screen = character.getObjectByName("screenlight");
       onResize();
-      void progress.loaded().then(() => {
+      setLoading(100);
+      introTimer = setTimeout(() => {
         if (disposed) return;
-        introTimer = setTimeout(() => {
-          if (disposed) return;
-          light.turnOnLights(lightweight);
-          animations?.startIntro();
-        }, lightweight ? 150 : 2500);
-      });
+        light.turnOnLights(lightweight);
+        animations?.startIntro();
+      }, lightweight ? 150 : 400);
     }).catch(fail);
     const onMouseMove = (event: MouseEvent) => handleMouseMove(event, (x, y) => { mouse = { x, y }; });
     const onTouchMove = (event: TouchEvent) => handleTouchMove(event, (x, y) => { mouse = { x, y }; });
@@ -143,10 +132,7 @@ const Scene = () => {
       observer.disconnect();
       clearTimeout(timeout);
       clearTimeout(introTimer);
-      progress.dispose();
       cleanupHover?.();
-      cleanupTimeline?.();
-      context.revert();
       animations?.dispose();
       model.dispose();
       light.dispose();

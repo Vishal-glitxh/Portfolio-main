@@ -24,8 +24,7 @@ export const DevelopmentTimelineCard = React.memo(({ timeline }: { timeline: Pro
 
   return <div className="development-timeline">
     <div className="milestone-summary">
-      <div className="milestone-summary-heading"><strong>Project progress estimate</strong><span>{timeline.overallProgress}%</span></div>
-      <progress aria-label="Estimated overall project progress" value={timeline.overallProgress} max={100} />
+      <div className="milestone-summary-heading"><strong>Development stages</strong></div>
       <p><strong>{activeTitles.length > 1 ? "Active phases" : "Current phase"}</strong> {activeTitles.join(" and ") || timeline.currentPhase}</p>
       {!finished && <p><strong>Recorded target</strong> {timeline.estimatedCompletion}</p>}
     </div>
@@ -42,7 +41,6 @@ export const DevelopmentTimelineCard = React.memo(({ timeline }: { timeline: Pro
               <span className="milestone-heading"><strong>{stage.title}</strong><FaChevronDown aria-hidden="true" /></span>
               <span className="milestone-meta">
                 <span className="milestone-status">{stage.status === "active" ? "In progress" : stage.status === "completed" ? "Completed" : "Planned"}</span>
-                {stage.completionPercentage !== undefined && <span>{stage.completionPercentage}%</span>}
                 {date && <span>{date}</span>}
               </span>
               <span className="milestone-description">{stage.description}</span>

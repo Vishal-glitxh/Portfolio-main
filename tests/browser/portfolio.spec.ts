@@ -1,5 +1,17 @@
 import { test, expect } from '@playwright/test';
 
+test('legal pages and favicon are reachable from the portfolio', async ({ page, request }) => {
+  await page.goto('/');
+  const privacy = page.getByRole('link', { name: 'Privacy policy' });
+  const terms = page.getByRole('link', { name: 'Terms and conditions' });
+  await expect(privacy).toHaveAttribute('href', '/privacy.html');
+  await expect(terms).toHaveAttribute('href', '/terms.html');
+  for (const path of ['/privacy.html', '/terms.html', '/favicon.svg']) {
+    const response = await request.get(path);
+    expect(response.ok(), path).toBe(true);
+  }
+});
+
 test('missing model cannot block navigation, project data, or resume access', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => { errors.push(error.message); console.log(error.stack); });
@@ -11,13 +23,9 @@ test('missing model cannot block navigation, project data, or resume access', as
   const project = page.getByRole('button', { name: 'Open engineering details for NovaIsland', exact: true });
   await project.focus();
   await project.press('Enter');
-  await page.getByRole('tab', { name: /Operations/ }).click();
-  await expect(page.locator('#pipeline')).toBeVisible();
-  await expect(page.locator('#observability')).toBeVisible();
-  await page.getByRole('tab', { name: /AI Assistant/ }).click();
-  await page.getByRole('button', { name: /Why SwiftUI & AppKit over Electron/ }).click();
-  await page.getByRole('button', { name: 'Engineering Decisions', exact: true }).click();
-  await expect(page.locator('#decisions')).toBeVisible();
+  await expect(page.getByRole('tab', { name: /Operations|Quality|AI Assistant/ })).toHaveCount(0);
+  await page.getByRole('tab', { name: /Architecture/ }).click();
+  await expect(page.locator('#architecture-section')).toBeVisible();
   await expect(page.getByRole('tab', { name: /Architecture/ })).toHaveAttribute('aria-selected', 'true');
   expect(errors).toEqual([]);
 });

@@ -429,7 +429,7 @@
   padding: 4px 10px;
   background-color: rgba(var(--accent-rgb), 0.05);
   border: 1px solid rgba(var(--accent-rgb), 0.15);
-  border-radius: 30px;
+  border-radius: 6px;
   color: #ece9e5;
   white-space: nowrap;
   transition: transform 0.2s ease, border-color 0.2s ease;

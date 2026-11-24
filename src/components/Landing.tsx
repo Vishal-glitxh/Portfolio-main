@@ -7,24 +7,14 @@ const Landing = ({ children }: PropsWithChildren) => {
       <div className="landing-section" id="landingDiv">
         <div className="landing-container">
           <div className="landing-intro">
-            <h2>Hello! I'm</h2>
+            <p className="landing-eyebrow">AI and machine learning engineering student</p>
             <h1>
               VISHAL
               <br />
               <span>SUHAS</span>
             </h1>
           </div>
-          <div className="landing-info">
-            <h3>A Creative</h3>
-            <h2 className="landing-info-h2">
-              <div className="landing-h2-1">Full-Stack</div>
-              <div className="landing-h2-2">AI & ML</div>
-            </h2>
-            <h2>
-              <div className="landing-h2-info">Engineer</div>
-              <div className="landing-h2-info-1">Developer</div>
-            </h2>
-          </div>
+          <p className="landing-info">Building AI, web, and native macOS projects.</p>
         </div>
         {children}
       </div>

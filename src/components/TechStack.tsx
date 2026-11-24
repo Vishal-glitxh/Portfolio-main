@@ -238,10 +238,6 @@ const TechStack = () => {
             <span className="deck-category">{selectedSkill.category}</span>
             <h3>{selectedSkill.name}</h3>
             <p>{selectedSkill.description}</p>
-            <div className="deck-rating">
-              <span>{selectedSkill.expertise} proficiency</span><strong>{selectedSkill.strength}%</strong>
-              <meter aria-label="Skill proficiency" value={selectedSkill.strength} min="0" max="100" />
-            </div>
           </div>
           <div className="skill-evidence">
             {/* 1. Projects mapping */}

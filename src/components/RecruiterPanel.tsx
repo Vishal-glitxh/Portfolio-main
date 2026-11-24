@@ -170,15 +170,14 @@ const RecruiterPanel = ({ isOpen, onClose }: RecruiterPanelProps) => {
           <div className="recruiter-card">
             <div className="recruiter-section-header">
               <FaLightbulb className="section-icon text-why" />
-              <h4>Why Hire Me</h4>
+              <h4>Project experience</h4>
             </div>
             <div className="recruiter-chips-grid">
               <span className="recruiter-chip">AI & Machine Learning</span>
               <span className="recruiter-chip">Full Stack Development</span>
-              <span className="recruiter-chip">Problem Solving</span>
-              <span className="recruiter-chip">Fast Learner</span>
-              <span className="recruiter-chip">Team Collaboration</span>
-              <span className="recruiter-chip">Continuous Learning</span>
+              <span className="recruiter-chip">Semantic search</span>
+              <span className="recruiter-chip">React and TypeScript</span>
+              <span className="recruiter-chip">SwiftUI and AppKit</span>
             </div>
           </div>
 

@@ -18,7 +18,7 @@ const projects: WorkProject[] = [
       "Description: A native macOS productivity platform that transforms the MacBook notch into an intelligent workspace combining AI assistance, system widgets, and developer tools.",
       "Problem Statement: Building a non-intrusive floating dynamic overlay that interfaces with native APIs without stealing active keyboard focus or draining system batteries.",
       "Solution Overview: Engineered a modular architecture using SwiftUI/AppKit bridged via NSPanel window styles and isolated thread states via Swift Concurrency.",
-      "GitHub & Status: Active Development (35–40% progress). Repository hosted at github.com/Vishal-glitxh. Beta release target: Q1 2027."
+      "Status: In development. Project details are available in this portfolio."
     ],
     image: "/images/novaisland_mockup.png"
   },
@@ -32,7 +32,7 @@ const projects: WorkProject[] = [
       "Description: An AI-powered study companion that predicts likely examination questions using intelligent document analysis.",
       "Problem Statement: Suboptimal preparation due to student difficulties in identifying key exam topics and patterns.",
       "Solution Overview: Built a Semantic-Match-Engine utilizing sentence embeddings and cosine similarity matches.",
-      "GitHub & Status: Under Development (70% progress). Repository hosted at github.com/Vishal-glitxh. Live demo under construction."
+      "Status: In development. Project details are available in this portfolio."
     ],
     image: "/images/ai_study_companion_mockup.png"
   },
@@ -46,7 +46,7 @@ const projects: WorkProject[] = [
       "Description: An intelligent employee development platform for skills mapping and talent visualization.",
       "Problem Statement: Difficulty in tracking employee potential, mapping workforce capabilities, and identifying growth paths.",
       "Solution Overview: Analyzes workforce skills using the 9-Box Talent Matrix mapping performance and potential nodes.",
-      "GitHub & Status: Under Development (55% progress). Repository hosted at github.com/Vishal-glitxh. Live demo under construction."
+      "Status: In development. Project details are available in this portfolio."
     ],
     image: "/images/idp_mockup.png"
   },
@@ -57,9 +57,9 @@ const projects: WorkProject[] = [
     role: "Frontend & 3D Interaction Developer",
     stack: "React, TypeScript, Three.js, GSAP, CSS",
     bullets: [
-      "Description: A premium, highly interactive portfolio featuring a 3D avatar that tracks user scroll and movement.",
+      "Description: A responsive portfolio with an optional 3D avatar and project case studies.",
       "Problem Statement: Displaying complex engineering skills and projects in a static, unengaging format.",
-      "Solution Overview: Built the avatar with Three.js and added desktop scroll animations with GSAP.",
+      "Solution Overview: Built the avatar with Three.js and kept project content usable across screen sizes.",
       "GitHub & Status: Completed. Repository hosted at github.com/Vishal-glitxh. Live demo is this website."
     ],
     image: "/images/portfolio_mockup.png"

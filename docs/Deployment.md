@@ -12,7 +12,9 @@ Use Node 24 (`nvm use`) and `npm ci`.
 
 ## Vercel hosting
 
-The live production URL is https://vishalsuhas-dev.vercel.app/ (confirmed HTTP 200 on 2026-11-03). The model asset also returned 200. The live HTML still pointed to the old custom domain and the favicon and Draco wrapper returned 404; the local fixes have not been published.
+Release is on hold until a custom domain owned by Vishal Suhas is connected and verified in Vercel. The `vercel.app` address is a hosting address, not a custom domain. `vercel.json` disables automatic Vercel Git deployments, including previews, so source can be pushed for review without publishing it. The manual production workflow requires `CUSTOM_DOMAIN`, rejects `*.vercel.app`, and runs Vercel's domain verification command before deployment. Confirm domain ownership, DNS, HTTPS, favicon, privacy policy, terms, and removal of any host-injected AI badge in the Vercel dashboard before triggering production deployment.
+
+The existing Vercel hosting URL is https://vishalsuhas-dev.vercel.app/. On 2026-11-25 its HTML and favicon returned HTTP 200. This local update has not been published, and this address does not satisfy the custom-domain release requirement.
 
 `vercel.json` selects Vite, installs locked dependencies, runs lint and unit tests before the production build, and publishes `dist/`. Hashed assets are immutable and HTML is revalidated. The portfolio uses hash anchors, so no catch-all rewrite is needed; missing assets should return 404.
 
@@ -20,20 +22,20 @@ The local Vercel CLI reported an invalid token. Project IDs, Git integration, de
 
 ### Release options
 
-If the existing Vercel project is already connected to this GitHub repository, confirm its repository, production branch (`main`), root directory, and Node 24 settings in the Vercel dashboard. Vercel can use `vercel.json` on its next Git deployment. GitHub CI remains a separate check; require its `verify` job before merging. The Vercel build command also enforces lint and unit tests, but does not run browser tests.
+If the existing Vercel project is already connected to this GitHub repository, confirm its repository, production branch (`main`), root directory, and Node 24 settings in the Vercel dashboard. GitHub CI remains a separate check; require its `verify` job before merging. The Vercel build command also enforces lint and unit tests, but does not run browser tests. Automatic Git deployment remains disabled; use the manual workflow after the release gate is satisfied.
 
 An alternative manual GitHub release workflow is provided in `.github/workflows/deploy.yml`:
 
 1. In GitHub, configure a `production` environment restricted to `main`.
 2. Set environment variables `VERCEL_ORG_ID` and `VERCEL_PROJECT_ID` to the IDs of the existing project. Set the `VERCEL_TOKEN` environment secret to a token with access to that project; do not put credentials in the repository or chat.
-3. Trigger **Deploy Vercel Production** from `main`. It repeats lint, unit checks, build, dependency audit, and browser checks before deploying source to that existing project, then verifies the public site and static assets.
+3. After the custom domain is connected and verified, set the `CUSTOM_DOMAIN` environment variable to its hostname and trigger **Deploy Vercel Production** from `main`. It repeats lint, unit checks, build, dependency audit, and browser checks before deploying source to that existing project, then verifies the custom domain.
 4. Use one release path to avoid duplicate deployments. If using this workflow as the production release gate, configure Vercel's Git integration accordingly in the dashboard.
 
-Run `npm run check:site` after release; it defaults to the confirmed production URL. The check intentionally fails against the currently deployed older build until the repaired assets are published. The workflow reports a failed health check but does not automatically roll back.
+Run `npm run check:site` against the custom-domain URL after release. The workflow reports a failed health check but does not automatically roll back.
 
-For rollback, inspect the actual Vercel deployment history and select a verified prior production deployment. Do not treat the portfolio's illustrative pipeline data as release evidence. Firebase configuration from the initial audit was removed because the user confirmed Vercel hosting. No custom-domain DNS change is needed for the supplied `vercel.app` URL.
+For rollback, inspect the actual Vercel deployment history and select a verified prior production deployment. Do not treat the portfolio's illustrative pipeline data as release evidence. Firebase configuration from the initial audit was removed because the user confirmed Vercel hosting.
 
-No resume file was supplied. Resume actions open an email request instead of pretending to download a document. Replace them with a verified resume URL when one is available.
+The resume link serves `public/documents/vishal-suhas-cv.pdf`. Check the document's currency before release.
 
 ## Dependency compatibility
 

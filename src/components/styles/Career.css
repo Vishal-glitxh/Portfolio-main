@@ -24,8 +24,8 @@
   gap: 34px;
   padding: clamp(24px, 3.4vw, 48px);
   border: 1px solid #6a5e4a;
-  border-radius: 24px;
-  background: linear-gradient(140deg, #443d30, #27241e 55%, #1b1814);
+  border-radius: 8px;
+  background: #27241e;
 }
 .education-degree::before {
   content: "";
@@ -36,7 +36,7 @@
   top: -9rem;
   right: -6rem;
   border-radius: 50%;
-  background: repeating-radial-gradient(circle, transparent 0 16px, #ead1a635 17px, transparent 18px);
+  background: transparent;
 }
 .education-year { display: flex; align-items: flex-start; gap: 14px; color: #ecddc2; font-size: .85rem; }
 .education-year svg { font-size: 1.4rem; }
@@ -46,7 +46,7 @@
 .education-degree-copy h3 { margin: 10px 0 12px; font-size: clamp(1.85rem, 3vw, 3rem); font-weight: 500; line-height: 1.06; letter-spacing: -.045em; }
 .education-focus { padding-top: 20px; border-top: 1px solid #625744; }
 .education-focus ul { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 0; padding: 0; list-style: none; }
-.education-focus li { padding: 5px 10px; border: 1px solid #5f5442; border-radius: 20px; color: #eae0d0; font-size: .8rem; }
+.education-focus li { padding: 5px 10px; border: 1px solid #5f5442; border-radius: 4px; color: #eae0d0; font-size: .8rem; }
 .education-milestones { margin: 0; padding: 0; list-style: none; }
 .education-milestones li { display: grid; grid-template-columns: 42px minmax(0, 1fr); gap: 18px; padding: 8px 0 22px; position: relative; }
 .education-milestones li:last-child { padding-bottom: 0; }

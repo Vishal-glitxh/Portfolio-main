@@ -15,7 +15,7 @@
 .mobile-layout .landing-info h2 { font-size: clamp(26px, 7vw, 40px); line-height: 1.2; margin: 0; width: auto; }
 .mobile-layout .landing-info h3 { font-size: 18px; }
 .mobile-layout .landing-info-h2::after, .mobile-layout .landing-h2-2, .mobile-layout .landing-h2-info-1 { display: none; }
-.mobile-character-stage { position: relative; width: var(--cWidth); max-width: 600px; margin: 28px auto 0; border: 1px solid #efb85c35; border-radius: 20px; background: radial-gradient(ellipse at center, #27241e, #0b0a09); overflow: hidden; }
+.mobile-character-stage { position: relative; width: var(--cWidth); max-width: 600px; margin: 28px auto 0; border: 1px solid #efb85c35; border-radius: 8px; background: #1b1915; overflow: hidden; }
 .character-toggle { display: block; min-height: 52px; padding: 16px 24px; margin: 0 auto; background: transparent; color: #ece9e5; border: 0; cursor: pointer; font: inherit; }
 .character-toggle span { display: block; color: #adacac; font-size: 13px; margin-top: 4px; }
 .mobile-layout .character-container { position: relative; height: 360px; width: 100%; }
@@ -39,7 +39,7 @@
 .mobile-layout .work-section h2 { font-size: 40px; margin: 0 0 24px; }
 .mobile-layout .work-flex { display: grid; grid-template-columns: minmax(0, 1fr); height: auto; margin: 0; padding: 0; gap: 24px; transform: none; }
 .mobile-layout .work-flex::before, .mobile-layout .work-flex::after { display: none; }
-.mobile-layout .work-flex .work-box { width: 100%; min-width: 0; padding: 24px; flex-direction: column; border: 1px solid #ffffff25; border-radius: 20px; gap: 24px; }
+.mobile-layout .work-flex .work-box { width: 100%; min-width: 0; padding: 24px; flex-direction: column; border: 1px solid #ffffff25; border-radius: 8px; gap: 24px; }
 .mobile-layout .work-info p { font-size: 14px; line-height: 1.6; }
 .mobile-layout .work-info > p { width: 100%; }
 .mobile-layout .work-title { gap: 12px; }

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0b0a09"/>
+  <rect x="64" y="64" width="1072" height="502" fill="#171512" stroke="#5f5442" stroke-width="2"/>
+  <path d="M64 64h160M64 64v140M1136 566H976M1136 566V426" fill="none" stroke="#efb85c" stroke-width="6"/>
+  <text x="104" y="132" fill="#efb85c" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">~VS</text>
+  <text x="104" y="320" fill="#f5f1e8" font-family="Arial, Helvetica, sans-serif" font-size="86" font-weight="700" letter-spacing="-3">Vishal Suhas</text>
+  <text x="108" y="384" fill="#d6cfc3" font-family="Arial, Helvetica, sans-serif" font-size="34">AI and machine learning engineering student</text>
+  <path d="M108 428h984" stroke="#5f5442" stroke-width="2"/>
+  <text x="108" y="487" fill="#efb85c" font-family="Arial, Helvetica, sans-serif" font-size="27">AI · Web · Native macOS</text>
+</svg>

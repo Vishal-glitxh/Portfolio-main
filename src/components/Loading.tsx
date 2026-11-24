@@ -1,86 +1,23 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./styles/Loading.css";
 import { useLoading } from "../context/LoadingProvider";
 
 const Loading = ({ percent }: { percent: number }) => {
   const { setIsLoading } = useLoading();
-  const [loaded, setLoaded] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const clicked = isLoaded;
-
-  const complete = percent >= 100;
   useEffect(() => {
-    if (!complete) return;
-    const ready = setTimeout(() => setLoaded(true), 600);
-    const finish = setTimeout(() => setIsLoaded(true), 1600);
-    return () => { clearTimeout(ready); clearTimeout(finish); };
-  }, [complete]);
-
-  useEffect(() => {
-    if (!isLoaded) return;
+    if (percent < 100) return;
     const timer = setTimeout(() => {
-      import("./utils/initialFX").then(module => module.initialFX())
-        .catch(error => {
-          console.warn("Intro animation unavailable", error);
-          document.body.style.overflowY = "auto";
-          document.querySelector("main")?.classList.add("main-active");
-        }).finally(() => setIsLoading(false));
-    }, 900);
+      document.body.style.overflowY = "auto";
+      setIsLoading(false);
+    }, 200);
     return () => clearTimeout(timer);
-  }, [isLoaded, setIsLoading]);
-
-  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
-    const { currentTarget: target } = e;
-    const rect = target.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    target.style.setProperty("--mouse-x", `${x}px`);
-    target.style.setProperty("--mouse-y", `${y}px`);
-  }
+  }, [percent, setIsLoading]);
 
   return (
     <>
-      <div className="loading-header">
-        <a href="/#" className="loader-title" data-cursor="disable">
-          ~VS
-        </a>
-        <div className={`loaderGame ${clicked && "loader-out"}`}>
-          <div className="loaderGame-container">
-            <div className="loaderGame-in">
-              {[...Array(27)].map((_, index) => (
-                <div className="loaderGame-line" key={index}></div>
-              ))}
-            </div>
-            <div className="loaderGame-ball"></div>
-          </div>
-        </div>
-      </div>
-      <div className="loading-screen">
-        <div className="loading-marquee">
-          <div className="loading-marquee-track">
-            <span> A Creative Developer</span> <span>A Creative Designer</span>
-            <span> A Creative Developer</span> <span>A Creative Designer</span>
-          </div>
-        </div>
-        <div
-          className={`loading-wrap ${clicked && "loading-clicked"}`}
-          onMouseMove={(e) => handleMouseMove(e)}
-        >
-          <div className="loading-hover"></div>
-          <div className={`loading-button ${loaded && "loading-complete"}`}>
-            <div className="loading-container">
-              <div className="loading-content">
-                <div className="loading-content-in">
-                  Loading <span>{percent}%</span>
-                </div>
-              </div>
-              <div className="loading-box"></div>
-            </div>
-            <div className="loading-content2">
-              <span>Welcome</span>
-            </div>
-          </div>
-        </div>
+      <div className="loading-screen" role="status" aria-live="polite">
+        <span className="loading-mark">~VS</span>
+        <span>Loading portfolio</span>
       </div>
     </>
   );

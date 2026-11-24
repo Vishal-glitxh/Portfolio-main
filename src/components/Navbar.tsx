@@ -1,15 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HoverLinks from "./HoverLinks";
-import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { trackRecruiterModeOpened } from "./utils/analytics";
 import "./styles/Navbar.css";
 
 import { useLightweightLayout } from "../hooks/useLightweightLayout";
-import { setSmoother } from "./utils/smoother";
-
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
 interface NavbarProps {
   isRecruiterOpen: boolean;
@@ -29,27 +23,6 @@ const Navbar = ({ isRecruiterOpen, onToggleRecruiter }: NavbarProps) => {
     wasRecruiterOpen.current = isRecruiterOpen;
   }, [isRecruiterOpen]);
 
-  useEffect(() => {
-    if (lightweight) return;
-    const instance = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper", content: "#smooth-content", smooth: 1.7,
-      effects: true, autoResize: true, ignoreMobileResize: true,
-    });
-    setSmoother(instance);
-    const links = Array.from(document.querySelectorAll<HTMLAnchorElement>(".header ul a"));
-    const navigate = (event: Event) => {
-      const section = (event.currentTarget as HTMLAnchorElement).getAttribute("data-href");
-      if (!section) return;
-      event.preventDefault();
-      instance.scrollTo(section, true, "top top");
-    };
-    links.forEach(link => link.addEventListener("click", navigate));
-    return () => {
-      links.forEach(link => link.removeEventListener("click", navigate));
-      instance.kill();
-      setSmoother(undefined);
-    };
-  }, [lightweight]);
   return (
     <>
       <div className="header" id="nav">
@@ -96,10 +69,6 @@ const Navbar = ({ isRecruiterOpen, onToggleRecruiter }: NavbarProps) => {
           </li>
         </ul>
       </div>
-
-      <div className="landing-circle1"></div>
-      <div className="landing-circle2"></div>
-      <div className="nav-fade"></div>
     </>
   );
 };

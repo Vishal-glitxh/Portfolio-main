@@ -42,14 +42,14 @@
   font-size: .88rem;
   font-variant-numeric: tabular-nums;
 }
-.deck-controls button { width: 44px; height: 44px; border-radius: 50%; font-size: 1.3rem; }
+.deck-controls button { width: 44px; height: 44px; border-radius: 6px; font-size: 1.3rem; }
 .skill-slide { display: grid; grid-template-columns: 1fr 1fr; touch-action: pan-y pinch-zoom; }
 .skill-cover, .skill-evidence { min-width: 0; padding: clamp(22px, 4vw, 58px); }
 .skill-cover {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background: radial-gradient(ellipse at top left, #4c4334, transparent 72%), #221f1a;
+  background: #221f1a;
 }
 .deck-emblem {
   display: grid;
@@ -72,10 +72,6 @@
 }
 .skill-cover h3 { font-size: clamp(2rem, 4vw, 4rem); margin: 8px 0; line-height: 1.05; letter-spacing: -.045em; overflow-wrap: anywhere; }
 .skill-cover p { color: #d7d2c9; line-height: 1.55; margin: 6px 0 28px; }
-.deck-rating { width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-top: auto; font-size: .85rem; }
-.deck-rating meter { grid-column: 1 / -1; width: 100%; height: 10px; }
-.deck-rating meter::-webkit-meter-optimum-value { background: #eac88c; }
-.deck-rating meter::-moz-meter-bar { background: #eac88c; }
 .skill-evidence { display: grid; gap: 20px; align-content: center; }
 .techstack .connection-group { display: grid; gap: 8px; }
 .techstack .connection-title, .techstack .connection-chips-row { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }

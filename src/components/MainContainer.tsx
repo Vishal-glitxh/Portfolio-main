@@ -2,14 +2,12 @@ import { PropsWithChildren, useEffect, useState, lazy, Suspense, useRef } from "
 import About from "./About";
 import Career from "./Career";
 import Contact from "./Contact";
-import Cursor from "./Cursor";
 import Landing from "./Landing";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import TechStack from "./TechStack";
-import setSplitText, { resetSplitText } from "./utils/splitText";
 import { useLightweightLayout } from "../hooks/useLightweightLayout";
 import { useLoading } from "../context/LoadingProvider";
 import "../styles/mobile.css";
@@ -58,24 +56,14 @@ const MainContainer = ({ children }: PropsWithChildren) => {
   }, []);
 
   useEffect(() => {
-    const resizeHandler = () => {
-      if (isDesktopView) setSplitText();
-    };
     if (lightweight) {
-      resetSplitText();
       setIsLoading(false);
       document.body.style.overflowY = "auto";
     }
-    resizeHandler();
-    window.addEventListener("resize", resizeHandler);
-    return () => {
-      window.removeEventListener("resize", resizeHandler);
-    };
-  }, [isDesktopView, lightweight, setIsLoading]);
+  }, [lightweight, setIsLoading]);
 
   return (
     <div className={`container-main ${lightweight ? "mobile-layout" : ""}`}>
-      {isDesktopView && <Cursor />}
       <Navbar isRecruiterOpen={isRecruiterOpen} onToggleRecruiter={() => setIsRecruiterOpen(true)} />
       <SocialIcons />
       {isDesktopView && children}

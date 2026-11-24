@@ -23,8 +23,8 @@ for (const width of [320, 390, 768, 844]) {
     }
     await page.getByRole('button', { name: 'Open engineering details for Personal Portfolio', exact: true }).click();
     await expect(page.getByRole('dialog')).toBeVisible();
-    await page.getByRole('tab', { name: /Operations/ }).click();
-    await expect(page.locator('#pipeline')).toBeVisible();
+    await page.getByRole('tab', { name: /Architecture/ }).click();
+    await expect(page.locator('#architecture-section')).toBeVisible();
     await page.getByRole('button', { name: 'Close Project Detail Panel' }).click();
     await expect(page.getByRole('dialog')).toHaveCount(0);
     await page.locator('#contact').scrollIntoViewIfNeeded();

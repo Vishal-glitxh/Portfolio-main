@@ -6,7 +6,7 @@ export const projectData: Record<string, ProjectDetails> = {
     status: "Active Development",
     role: "macOS Software Engineer & AI Systems Developer",
     duration: "Jan 2026 – Present",
-    summary: "NovaIsland is a premium native macOS productivity platform that transforms the MacBook notch into an intelligent workspace combining AI assistance, productivity widgets, developer tools, and deep macOS integrations through a modular engine-based architecture.",
+    summary: "NovaIsland is a macOS productivity project that uses the MacBook notch area for AI assistance, widgets, and developer tools.",
     problem: "Existing notch utilities mostly replicate the iPhone Dynamic Island while providing only simple widgets such as battery indicators or media controls. They lack AI-powered workflows, native desktop interactions, and plugin extensibility.",
     solution: "NovaIsland introduces an AI-first productivity platform for macOS that combines native SwiftUI experiences, intelligent widgets, multiple LLM providers, developer tooling, and plugin extensibility inside a Dynamic Island-inspired interface.",
     architectureData: {
@@ -35,8 +35,8 @@ export const projectData: Record<string, ProjectDetails> = {
     demo: undefined,
     quickFacts: [
       "Native macOS app (Swift 6 & SwiftUI)",
-      "Under 12MB idle memory footprint",
-      "Zero-downtime background execution"
+      "SwiftUI and AppKit interface",
+      "Local and cloud AI provider adapters"
     ]
   },
   "AI Study Companion": {
@@ -72,9 +72,9 @@ export const projectData: Record<string, ProjectDetails> = {
     github: "https://github.com/Vishal-glitxh",
     demo: undefined,
     quickFacts: [
-      "Semantic parsing accuracy >85%",
-      "Supports multiple PDF course uploads",
-      "Generates prep topic predictions under 2s"
+      "Document extraction and semantic search",
+      "Sentence embeddings and similarity matching",
+      "Study topic exploration"
     ]
   },
   "Intelligent Development Platform (IDP)": {
@@ -111,7 +111,7 @@ export const projectData: Record<string, ProjectDetails> = {
     demo: undefined,
     quickFacts: [
       "Interactive SVG heatmaps",
-      "Generates 9-Box matrices instantly",
+      "9-Box talent matrix visualization",
       "Personalized course recommendations"
     ]
   },
@@ -120,25 +120,25 @@ export const projectData: Record<string, ProjectDetails> = {
     status: "Live",
     role: "Frontend & 3D Interaction Developer",
     duration: "Apr 2026 – Present",
-    summary: "A personal portfolio featuring a 3D avatar that tracks user scroll and mouse movement.",
+    summary: "A personal portfolio featuring a 3D avatar with optional pointer interaction.",
     problem: "Displaying complex engineering skills and projects in a static, unengaging format.",
-    solution: "Built the avatar with Three.js and added desktop scroll animations with GSAP.",
+    solution: "Built the avatar with Three.js and kept project information accessible without animation.",
     architectureData: {
       flow: "Pointer input → head rotation target → Three.js animation frame → WebGL canvas.",
-      components: "React UI, Three.js renderer, encrypted model loader, desktop GSAP scroll animations, and portal-mounted project panels.",
+      components: "React UI, Three.js renderer, model loader, and portal-mounted project panels.",
       pipeline: "Pointer coordinates → interpolated bone rotation → rendered character frame."
     },
     categories: {
       "Languages & Typings": ["TypeScript", "JavaScript"],
       "3D Rendering": ["Three.js", "WebGL", "glTF loaders"],
-      "Animations & Styles": ["GSAP", "ScrollTrigger", "ScrollSmoother", "CSS Grid"]
+      "Interface & Styles": ["CSS Grid", "Responsive layout", "Keyboard interaction"]
     },
     richHighlights: [
       { title: "3D Canvas Model Renderer", desc: "Features custom GLTF asset loading and skeleton bone coordinate rotations." },
-      { title: "GSAP Lerping timelines", desc: "Coordinates camera Zoom and avatar positions with scroll track positions." },
+      { title: "Optional 3D preview", desc: "Loads the avatar on request in lightweight layouts." },
       { title: "React Portal overlay Console", desc: "Lazy-loaded accessible console code-split from core page bundle." }
     ],
-    challenges: "Achieving smooth rendering rates (>60FPS) on mobile viewports while running Three.js lighting and canvas operations.",
+    challenges: "Keeping the 3D preview responsive across screen sizes and device capabilities.",
     learnings: "Acquired experience with WebGL canvas optimization, browser layout paints, and accessible keyboard focus traps.",
     roadmap: [
       "Add interactive chat assistant matching developer profile.",
@@ -150,7 +150,7 @@ export const projectData: Record<string, ProjectDetails> = {
     quickFacts: [
       "Locks body scroll on panels",
       "Vite Code-splitting split chunks",
-      "Maintains constant 60FPS"
+      "Respects reduced motion and lighter devices"
     ]
   }
 };

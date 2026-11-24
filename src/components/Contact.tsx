@@ -67,6 +67,10 @@ const Contact = () => {
             </h5>
           </div>
         </div>
+        <nav className="legal-links" aria-label="Legal information">
+          <a href="/privacy.html">Privacy policy</a>
+          <a href="/terms.html">Terms and conditions</a>
+        </nav>
       </div>
     </div>
   );

@@ -10,8 +10,6 @@ import {
   OverviewWorkspace,
   ArchitectureWorkspace,
   EngineeringWorkspace,
-  OperationsWorkspace,
-  QualityWorkspace,
   AssistantWorkspace
 } from "./workspace";
 import { trackProjectOpened, trackArchitectureViewed, trackProjectClosed } from "./utils/analytics";
@@ -37,10 +35,6 @@ const ProjectExplorerInner = ({ projectName, onClose }: ProjectExplorerProps) =>
     evidence,
     notebook,
     journal,
-    perfReview,
-    testingStrategy,
-    pipeline,
-    observability,
     assistant,
     timeline
   } = useProjectData(projectName);
@@ -207,8 +201,8 @@ const ProjectExplorerInner = ({ projectName, onClose }: ProjectExplorerProps) =>
   };
 
   const handleTabKeyDown = (e: React.KeyboardEvent) => {
-    const tabIds = ["overview", "architecture", "engineering", "operations", "qa", "assistant"] as const;
-    const currentIndex = tabIds.indexOf(activeTab);
+    const tabIds = ["overview", "architecture", "engineering"] as const;
+    const currentIndex = Math.max(0, tabIds.findIndex(tab => tab === activeTab));
     let nextIndex = currentIndex;
 
     if (e.key === "ArrowRight") {
@@ -263,27 +257,6 @@ const ProjectExplorerInner = ({ projectName, onClose }: ProjectExplorerProps) =>
             highlightedSectionId={highlightedSectionId}
           />
         );
-      case "operations":
-        return (
-          <OperationsWorkspace
-            perfReview={perfReview}
-            pipeline={pipeline}
-            observability={observability}
-            expandedSections={expandedSections}
-            toggleSection={toggleSection}
-            highlightedSectionId={highlightedSectionId}
-          />
-        );
-      case "qa":
-        return (
-          <QualityWorkspace
-            testingStrategy={testingStrategy}
-            evidence={evidence}
-            expandedSections={expandedSections}
-            toggleSection={toggleSection}
-            highlightedSectionId={highlightedSectionId}
-          />
-        );
       case "assistant":
         return (
           <AssistantWorkspace
@@ -307,9 +280,6 @@ const ProjectExplorerInner = ({ projectName, onClose }: ProjectExplorerProps) =>
     { id: "overview" as const, label: "Overview", count: 4 },
     { id: "architecture" as const, label: "Architecture", count: 3 },
     { id: "engineering" as const, label: "Engineering", count: 2 },
-    { id: "operations" as const, label: "Operations", count: 3 },
-    { id: "qa" as const, label: "Quality", count: 6 },
-    { id: "assistant" as const, label: "AI Assistant", count: assistant?.documents.length || 0 }
   ];
 
   return (
